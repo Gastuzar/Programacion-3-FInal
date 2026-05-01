@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Categorías</title>
+    <link rel="stylesheet" href="../../../src/styles/admin/admin.css">
+    <link rel="stylesheet" href="../../../src/styles/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo">Panel Admin</h1>
+        <nav class="header__nav">
+            <ul class="header__ul">
+                <li class="header__li">
+                    <span id="admin-name">admin admin</span>
+                </li>
+                <li class="header__li"><a href="../client/home.html">Tienda</a></li>
+                <li class="header__li"><a href="./admin.html">Panel Admin</a></li>
+                <li class="header__li" id="logoutButton">
+                    <a href="../auth/login/login.html">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="aside">
+        <h2 class="aside__title">Administración</h2>
+        <p>Panel de Control</p>
+            <ul class="aside__ul">
+                <li class="aside__li">
+                    <a href="./admin.html">📊 Dashboard</a>
+                </li>
+                <li class="aside__li">
+                    <a href="./categorias.html">📁 Categorías</a>
+                </li>
+                <li class="aside__li">
+                    <a href="./productos.html">🍔 Productos</a>
+                </li>
+                <li class="aside__li">
+                    <a href="./orders.html" class="active">📦 Pedidos</a>
+                </li>
+            </ul>
+    </aside>
+    <main class="main-dashboard">
+        <h2 class="dashboard-title">Panel de Administración</h2>
+
+        <div class="stats-grid">
+            <div class="card card--purple">
+                <div class="card__content">
+                    <span class="card__icon">📦</span>
+                    <h3 class="card__title">Categorías</h3>
+                    <p id="count-categories" class="card__number">0</p>
+                    <a href="../admin/categorias.html" class="card__button">Gestionar</a>
+                </div>
+            </div>
+            <div class="card card--pink">
+                <div class="card__content">
+                    <span class="card__icon">🍔</span>
+                    <h3 class="card__title">Productos</h3>
+                    <p id="count-products" class="card__number">0</p>
+                    <a href="../admin/productos.html" class="card__button">Gestionar</a>
+                </div>
+            </div>
+            <div class="card card--blue">
+                <div class="card__content">
+                    <span class="card__icon">📋</span>
+                    <h3 class="card__title">Pedidos</h3>
+                    <p id="count-orders" class="card__number">0</p>
+                    <a href="../admin/orders.html" class="card__button">Gestionar</a>
+                </div>
+            </div>
+            <div class="card card--green">
+                <div class="card__content">
+                    <span class="card__icon">✅</span>
+                    <h3 class="card__title">Disponibles</h3>
+                    <p id="count-available" class="card__number">0</p>
+                    <small>Productos activos</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="resumen-section">
+            <h3 class="resumen-title">📊 Resumen Rápido</h3>
+            <div class="resumen-grid">
+                <div class="resumen-card">
+                    <p>💰 Ingresos Totales</p>
+                    <strong id="total-revenue">$0.00</strong>
+                </div>
+                <div class="resumen-card">
+                    <p>⏳ Pendientes</p>
+                    <strong id="count-pending">0</strong>
+                </div>
+                <div class="resumen-card">
+                    <p>👨‍🍳 En Preparación</p>
+                    <strong id="count-preparing">0</strong>
+                </div>
+                <div class="resumen-card">
+                    <p>🏁 Completados</p>
+                    <strong id="count-completed">0</strong>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__p">Panel de administracion - Food Store v1.0</p>
+    </footer>
+    
+    <script type="module" src="../../admin//adminHome/adminHome.ts"></script> 
+</body>
+</html>

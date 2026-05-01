@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos - Panel Admin</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/admin/orders.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo">🍕 Food Store</h1>
+        <nav class="header__nav">
+            <ul class="header__ul">
+                <li class="header__li">
+                    <span id="admin-name">admin admin</span>
+                </li>
+                <li class="header__li"><a href="../client/home.html">Tienda</a></li>
+                <li class="header__li"><a href="./admin.html">Panel Admin</a></li>
+                <li class="header__li" id="logoutButton">
+                    <a href="../auth/login/login.html">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="admin-layout">
+        <aside class="aside">
+            <h2 class="aside__title">Administración</h2>
+            <p class="aside__subtitle">Panel de Control</p>
+            <ul class="aside__ul">
+                <li class="aside__li">
+                    <a href="./admin.html">📊 Dashboard</a>
+                </li>
+                <li class="aside__li">
+                    <a href="./categorias.html">📁 Categorías</a>
+                </li>
+                <li class="aside__li">
+                    <a href="./productos.html">🍔 Productos</a>
+                </li>
+                <li class="aside__li">
+                    <a href="./orders.html" class="active">📦 Pedidos</a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1 class="admin-title">Gestión de Pedidos</h1>
+                
+                <div class="admin-filter">
+                    <select id="filter-status-admin" class="filter-select">
+                        <option value="Todos">Todos los pedidos</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Procesado">Procesado</option>
+                        <option value="En Preparación">En Preparación</option>
+                        <option value="Enviado">Enviado</option>
+                        <option value="Entregado">Entregado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="orders-admin-container" class="orders-admin-container">
+                <!-- Los pedidos se cargarán aquí dinámicamente -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de detalles del pedido -->
+    <div id="modal-order-details" class="modal" style="display: none;">
+        <div class="modal-content modal-content--large">
+            <span class="modal__close" id="close-modal">&times;</span>
+            <div id="order-details-content">
+                <!-- El contenido se cargará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer__p">Panel de administración - Food Store v1.0</p>
+    </footer>
+
+    <script type="module" src="../../admin/orders/orders.ts"></script>
+</body>
+</html>

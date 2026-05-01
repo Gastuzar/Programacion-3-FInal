@@ -1,0 +1,161 @@
+.orders-main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.orders-title {
+    font-size: 32px;
+    color: #333;
+    margin: 0;
+}
+
+.orders-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.orders-container {
+    display: grid;
+    gap: 20px;
+}
+
+/* Order Card */
+.order-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.order-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.order-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-card__title {
+    font-size: 20px;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.order-card__date {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.order-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.order-card__body {
+    margin-bottom: 15px;
+}
+
+.order-items-preview {
+    margin-bottom: 15px;
+}
+
+.order-item-mini {
+    padding: 5px 0;
+    color: #555;
+}
+
+.order-more-items {
+    color: #999;
+    font-size: 13px;
+    font-style: italic;
+    margin: 5px 0 0 0;
+}
+
+.order-summary-mini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.order-products-count {
+    color: #666;
+    margin: 0;
+}
+
+.order-total {
+    font-size: 24px;
+    color: #ff6347;
+    margin: 0;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state__icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orders-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .orders-filter {
+        width: 100%;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+}

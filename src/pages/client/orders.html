@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos - Food Store</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/client/store/orders.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo">Food Store</h1>
+        <nav class="header__nav">
+            <ul class="header__ul">
+                <li class="header__li"><a href="./home.html">Inicio</a></li>
+                <li class="header__li"><a href="./orders.html" class="active">Mis Pedidos</a></li>
+                <li class="header__li"><a href="./cart.html">Carrito</a></li>
+                <li class="header__li" id="adminPanel" style="display: none;">
+                    <a href="../admin/orders.html">Panel Admin</a>
+                </li>
+                <li class="header__li" id="logoutButton">
+                    <a href="../auth/login/login.html">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="orders-main">
+        <div class="orders-header">
+            <h2 class="orders-title">Mis Pedidos</h2>
+            
+            <div class="orders-filter">
+                <label for="filter-status">Filtrar por estado:</label>
+                <select id="filter-status" class="filter-select">
+                    <option value="Todos">Todos</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Procesado">Procesado</option>
+                    <option value="En Preparación">En Preparación</option>
+                    <option value="Enviado">Enviado</option>
+                    <option value="Entregado">Entregado</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="orders-container" class="orders-container">
+            <!-- Los pedidos se cargarán aquí dinámicamente -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__p">&copy; 2026 Food Store. Todos los derechos reservados.</p>
+        <p class="footer__p">Contacto: <a href="mailto:info@foodstore.com">info@foodstore.com</a></p>
+    </footer>
+
+    <script type="module" src="../../client/orders/order.ts"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/client/store/cart.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo">Food Store</h1>
+            <nav class="header__nav">
+                <ul class="header__ul">
+                    <li class="header__li"><a href="../../pages/client/home.html">Inicio</a></li>
+                    <li class="header__li"><a href="../../pages/client/orders.html">Mis Pedidos</a></li>
+                    <li class="header__li"><a href="../../pages/client/cart.html">Carrito</a></li>
+                    <!-- Solo se debe ver si sos admin -->
+                    <li class="header__li" id="adminPanel" style="display: none;">
+                        <a href="../../pages/admin/admin.html">Panel Admin</a>
+                    </li>
+                    <li class="header__li" id="logoutButton"><a href="../../pages/auth/login/login.html">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+    </header>
+    <main class="cart-container">
+        <h2 class="cart-title">Mi Carrito</h2>
+        
+        <div class="cart-layout">
+            <!-- Lista de productos -->
+            <section id="cart-items" class="cart-items">
+                <!-- Se genera con TS -->
+            </section>
+
+            <!-- Resumen del pedido -->
+            <aside class="cart-summary">
+                <h3>Resumen del Pedido</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío:</span>
+                    <span id="summary-shipping">$500.00</span>
+                </div>
+                <hr>
+                <div class="summary-row summary-row--total">
+                    <span>Total:</span>
+                    <span id="summary-total">$0.00</span>
+                </div>
+                <button id="btn-checkout" class="button button--primary">Proceder al Pago</button>
+                <button id="btn-empty-cart" class="button button--danger">Vaciar Carrito</button>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__p">&copy; 2026 Food Store. Todos los derechos reservados.</p>
+        <p class="footer__p">Contacto: <a href="mailto:info@foodstore.com">info@foodstore.com</a></p>
+    </footer>
+    <script type="module" src="../../store/cart/cart.ts"></script>
+</body>
+</html>

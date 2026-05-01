@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Food Store</title>
+    <link rel="stylesheet" href="../../../styles/auth/login.css">
+</head>
+<body>
+    <div class="login-card">
+        <h1 class="login-card__logo">Food Store</h1>
+        <h2 class="login-card__title">Iniciar Sesión</h2>
+
+        <form id="login-form">
+            <div class="login-card__input-group">
+                <label class="login-card__label" for="email">Email:</label>
+                <input class="login-card__input" type="email" id="email" 
+                    name="email" required placeholder="Ingrese su email">
+            </div>
+
+            <div class="login-card__input-group">
+                <label class="login-card__label" for="password">Contraseña:</label>
+                <input class="login-card__input" type="password" id="password" 
+                    name="password" required placeholder="******">
+            </div>
+
+            <p class="login-card__error-message" id="error-msg"></p>
+
+            <button class="login-card__button" type="submit">INGRESAR</button>
+
+            <p class="login-card__footer">
+                ¿No tienes una cuenta? 
+                <a href="../registro/registro.html" class="login-card__link">Regístrate acá</a>
+            </p>
+            <p>Cuentas de prueba:</p>
+            <ul>
+                <li><strong>Admin:</strong> admin@admin.com / Admin123</li>
+                <li><strong>Cliente:</strong> cliente@cliente.com / Client123</li>
+            </ul>
+        </form>
+    </div>
+
+    <script type="module" src="../../../auth/login.ts"></script>
+</body>
+</html>

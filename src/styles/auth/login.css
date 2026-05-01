@@ -1,0 +1,107 @@
+@import '../variables.css';
+@import '../base.css';
+
+.login-card {
+    margin: 20vh auto;
+    width: 90%;
+    text-align: center;
+    max-width: 420px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    box-shadow: var(--shadow);
+    background-color: var(--white-color);
+    font-family: 'Montserrat-Medium', sans-serif;
+}
+
+.login-card__logo {
+    margin: 10px 0 0 0;
+    color: var(--primary-color);
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.login-card__title {
+    margin: 7px 0 25px 0;
+    color: var(--text-color);
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+.login-card__input-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.login-card__label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.login-card__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 7px;
+    font-family: 'Montserrat-Medium', sans-serif;
+    font-size: 0.95em;
+    transition: border-color 0.3s;
+}
+
+.login-card__input:focus {
+    outline: none;
+    border-color: var(--focus-color);
+    border-width: 1.8px;
+}
+
+.login-card__error-message {
+    color: #e03030;
+    font-size: 0.82em;
+    text-align: left;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.login-card__button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat-Medium', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+}
+
+.login-card__button:hover {
+    background-color: var(--focus-color);
+}
+
+.login-card__footer {
+    margin-top: 20px;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 1em;
+}
+
+.login-card__link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-card__link:hover {
+    text-decoration: underline;
+}

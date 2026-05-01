@@ -1,0 +1,26 @@
+
+.client-titulo {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 40px 30px 20px 30px;
+}
+
+.client-logout {
+    padding: 10px 24px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat-Medium', sans-serif;
+    font-weight: bold;
+    font-size: 0.95em;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    margin: 0 30px;
+}
+
+.client-logout:hover {
+    background-color: var(--focus-color);
+}

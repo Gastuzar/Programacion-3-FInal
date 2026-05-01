@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/client/client.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo">Food Store</h1>
+            <nav class="header__nav">
+                <ul class="header__ul">
+                    <li class="header__li"><a href="../../pages/client/home.html">Inicio</a></li>
+                    <li class="header__li"><a href="../../pages/client/orders.html">Mis Pedidos</a></li>
+                    <li class="header__li"><a href="../../pages/client/cart.html">Carrito</a></li>
+                    <!-- Solo se debe ver si sos admin -->
+                    <li class="header__li" id="adminPanel" style="display: none;">
+                        <a href="../../pages/admin/admin.html">Panel Admin</a>
+                    </li>
+                    <li class="header__li" id="logoutButton"><a href="../../pages/auth/login/login.html">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+    </header>
+    <hr>
+    <div class="layout-container">
+        <aside class="aside">
+            <h2 class="aside__title">Categorias</h2>
+            <ul class="aside__ul" id="lista-categorias"></ul>
+        </aside>
+        <main class="main">
+            <form class="main__form">
+                <label class="main__label" for="buscarProductos">Buscar productos</label>
+                <input class="main__input" id="buscarProductos" type="text" placeholder="Ej: Hamburguesa">
+                <button class="main__button" type="submit">Buscar</button>
+            </form>
+                <h2 class="main__title">Productos Destacados</h2>
+        <!-- Aquí se cargarán los productos dinámicamente --> 
+                <section class="main__section" id="contenedor-productos" ></section> 
+        </main>  
+    </div>      
+    <footer class="footer">
+        <p class="footer__p">&copy; 2026 Food Store. Todos los derechos reservados.</p>
+        <p class="footer__p">Contacto: <a href="mailto:info@foodstore.com">info@foodstore.com</a></p>
+    </footer>
+    <script type="module" src="../../store/home/home.ts"></script>
+</body>
+</html>
