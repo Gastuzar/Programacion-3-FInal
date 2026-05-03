@@ -113,7 +113,7 @@
 .order-details__totals,
 .order-details__actions {
     background: var(--white-color);
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -122,14 +122,14 @@
     font-size: 1.1em;
     margin: 0 0 12px 0;
     color: var(--text-color);
-    border-bottom: 2px solid #f9f9f9;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 8px;
     font-weight: 700;
 }
 
 .order-details__section p {
     margin: 8px 0;
-    color: #555;
+    color: var(--text-color);
     font-size: 0.95em;
 }
 
@@ -144,9 +144,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px;
-    background: #fafafa;
+    background: var(--white-color);
     border-radius: 8px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--border-color);
 }
 
 .order-product-item__info {
@@ -161,7 +161,7 @@
 
 .order-product-item__qty {
     font-size: 0.85em;
-    color: #888;
+    color: var(--text-color);
     margin-top: 2px;
 }
 
@@ -175,7 +175,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    color: #666;
+    color: var(--text-color);
     font-size: 1em;
 }
 
@@ -185,7 +185,7 @@
     color: var(--text-color);
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 2px solid #eee;
+    border-top: 2px solid var(--border-color);
 }
 
 .order-details__actions {
@@ -220,7 +220,7 @@
 .order-badge {
     padding: 6px 12px;
     border-radius: 20px;
-    color: white;
+    color: var(--white-color);
     font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
@@ -241,7 +241,7 @@
 }
 
 .empty-state p {
-    color: #666;
+    color: var(--text-color);
 }
 
 /* Responsive */

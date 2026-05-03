@@ -11,7 +11,6 @@ import { navigate } from "../../utils/navigate";
 import { logout, verificarClient } from "../../utils/auth";
 import type { CartItem } from "../../types/Cart";
 import type { Pedido } from "../../types/Pedido";
-import { getUsers } from "../../utils/localStorage";
 
 // Constantes
 const SHIPPING_COST = 500;

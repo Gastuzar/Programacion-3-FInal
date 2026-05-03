@@ -16,11 +16,11 @@
 
 .modal__content {
     background-color: var(--white-color);
-    padding: 30px;
+    padding: 20px;
     border-radius: 12px;
     width: 90%;
     max-width: 500px;
-    max-height: 90vh;
+    max-height: 85vh;
     overflow-y: auto;
     position: relative;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -49,13 +49,13 @@
 }
 
 .modal__close:hover {
-    color: #333;
+    color: var(--text-color);
 }
 
 .modal__title {
     margin: 0 0 25px 0;
     font-size: 24px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .modal-overlay {
@@ -74,7 +74,7 @@
 .order-badge {
     padding: 6px 12px;
     border-radius: 20px;
-    color: white;
+    color: var(--white-color);
     font-size: 0.75rem; /* Tamaño fijo para que no salte */
     font-weight: 700;
     text-transform: uppercase;
@@ -108,7 +108,7 @@
     top: 10px;
     font-size: 28px;
     font-weight: bold;
-    color: #7a7878;
+    color: var(--text-color);
     cursor: pointer;
     transition: color 0.3s;
     background: none;

@@ -4,15 +4,15 @@
 @import '../../components/button.css';
 
 .details-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 40px auto;
     padding: 20px;
 }
 
 .product-detail {
     display: grid;
-    grid-template-columns: 3fr 4fr;
-    gap: 40px;
+    grid-template-columns: 2.3fr 3fr;
+    gap: 30px;
     background: var(--white-color);
     padding: 30px;
     border-radius: 12px;
@@ -27,7 +27,7 @@
 
 .product-detail__img {
     width: 100%;
-    max-width: 500px;
+    /* max-width: 400px; */
     height: auto;
     border-radius: 12px;
     object-fit: cover;
@@ -36,14 +36,14 @@
 .product-detail__info {
     display: flex;    
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     justify-content:center; 
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .product-detail__category {
     font-size: 1em;
-    color: #666;
+    color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
@@ -75,7 +75,7 @@
 }
 
 .product-detail__description {
-    color: #555;
+    color: var(--text-color);
     line-height: 1.6;
     font-size: 1.05em;
 }
@@ -95,7 +95,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #f5f5f5;
+    background: var(--white-color);
     padding: 5px;
     border-radius: 8px;
     width: fit-content;
@@ -106,7 +106,7 @@
     height: 40px;
     border: none;
     background: var(--primary-color);
-    color: white;
+    color: var(--white-color);
     border-radius: 6px;
     cursor: pointer;
     font-size: 20px;
@@ -146,7 +146,7 @@
 
 /* Badge de Disponibilidad */
 .status-badge {
-    color: white;
+    color: var(--white-color);
     padding: 5px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -154,11 +154,11 @@
 }
 
 .status-badge--available {
-    background-color: #1a9c6d;
+    background-color: var(--disponible);
 }
 
 .status-badge--out {
-    background-color: #ff3d77;
+    background-color: var(--error-color);
 }
 
 /* Notificación Flotante */
@@ -166,8 +166,8 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #1a9c6d;
-    color: white;
+    background: var(--disponible);
+    color: var(--white-color);
     padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);

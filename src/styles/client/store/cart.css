@@ -76,12 +76,12 @@
 }
 
 .cart-item__description {
-    color: #666;
+    color: var(--text-color);
     font-size: 1.1em;
 }
 
 .cart-item__price-unit {
-    color: #999;
+    color: var(--text-color);
     font-size: 1.1em;
 }
 
@@ -96,7 +96,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #f5f5f5;
+    background: var(--white-color);
     padding: 5px 10px;
     border-radius: 8px;
 }
@@ -106,7 +106,7 @@
     height: 32px;
     border: none;
     background: var(--primary-color);
-    color: white;
+    color: var(--white-color);
     border-radius: 50%;
     cursor: pointer;
     font-size: 16px;
@@ -133,7 +133,7 @@
 }
 
 .btn-delete {
-    background: #dc3545;
+    background: var(--error-color);
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -143,7 +143,7 @@
 }
 
 .btn-delete:hover {
-    background: #c82333;
+    background: var(--error-color);
     transform: scale(1.1);
 }
 
@@ -171,7 +171,7 @@
     justify-content: space-between;
     margin-bottom: 15px;
     font-size: 1.2em;
-    color: #666;
+    color: var(--text-color);
 }
 
 .summary-row--total {
@@ -180,12 +180,12 @@
     color: var(--text-color);
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 2px solid #eee;
+    border-top: 2px solid var(--border-color);
 }
 
 .cart-summary hr {
     border: none;
-    border-top: 2px solid #eee;
+    border-top: 2px solid var(--border-color);
     margin: 15px 0;
 }
 
@@ -212,7 +212,7 @@
 }
 
 .cart-empty p {
-    color: #666;
+    color: var(--text-color);
     margin-bottom: 25px;
 }
 

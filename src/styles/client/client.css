@@ -167,7 +167,7 @@
 }
 
 .article__strong {
-    color: var(--disponile);
+    color: var(--disponible);
     font-weight: 800;
 }
 
@@ -176,12 +176,12 @@
     font-size: 0.85rem;
     font-weight: 600;
     /* Estilo tipo badge para el estado */
-    color: #1a9c6d; /* Verde para disponible */
+    color: var(--disponible); /* Verde para disponible */
 }
 
 /* Opcional: si el producto está agotado */
 .article__stock:contains('Agotado') {
-    color: #ff3d77;
+    color: var(--agotado);
 }
 
 #btn-ordenar {

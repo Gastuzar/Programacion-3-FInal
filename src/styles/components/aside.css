@@ -21,7 +21,7 @@
 
 .aside__subtitle {
     margin: 0 0 15px 0;
-    color: #666;
+    color: var(--text-color);
     font-size: 0.9em;
     padding-bottom: 10px;
     border-bottom: 2px solid var(--primary-color);

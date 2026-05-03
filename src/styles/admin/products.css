@@ -16,13 +16,13 @@
 }
 
 .product-status--disponible {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: var(--white-color);
+    color: var(--disponible);
 }
 
 .product-status--agotado {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: var(--white-color);
+    color: var(--agotado);
 }
 
 .form__availability {
@@ -62,13 +62,13 @@
 }
 
 .status--Disponible {
-    background-color: #e3f7ed;
-    color: #1a9c6d;
+    background-color: var(--white-color);
+    color: var(--disponible);
 }
 
 .status--Agotado {
-    background-color: #ffeef3;
-    color: #ff3d77;
+    background-color: var(--white-color);
+    color: var(--agotado);
 }
 /* Responsive */
 @media (max-width: 992px) {

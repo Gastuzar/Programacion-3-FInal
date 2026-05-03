@@ -1,6 +1,7 @@
 import type { IUser } from "../types/IUser";
 import type { Rol } from "../types/Rol";
 import { navigate } from "./navigate";
+import { clearSession } from "./localStorage";
 
 // Función para verificar la autenticación y autorización del usuario
 export function checkAuth(rolRequerido: Rol): IUser | null {
@@ -26,7 +27,7 @@ export function checkAuth(rolRequerido: Rol): IUser | null {
 //
 export const verificarAdmin = (): void => {
     // Intentamos obtener el usuario validado
-    const userData = checkAuth("admin");;
+    const userData = checkAuth("admin");
     
     // Si no hay user, checkAuth ya redirigió, así que cortamos ejecución aquí
     if (!userData) return;
@@ -57,6 +58,6 @@ export const verificarClient = (): void => {
 
 // Función para cerrar sesión
 export const logout = () => {
-    localStorage.removeItem("userData");
+    clearSession();
     navigate("/src/pages/auth/login/login.html");
 }

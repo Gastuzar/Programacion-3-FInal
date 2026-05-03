@@ -44,7 +44,7 @@
 
 .button--warning {
     background-color: #ffc107;
-    color: #333;
+    color: var(--text-color)
 }
 
 .button--warning:hover {

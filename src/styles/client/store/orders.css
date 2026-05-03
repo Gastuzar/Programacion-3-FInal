@@ -71,7 +71,7 @@
     align-items: flex-start;
     margin-bottom: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .order-card__title {
@@ -82,7 +82,7 @@
 }
 
 .order-card__date {
-    color: #666;
+    color: var(--text-color);
     font-size: 0.9em;
     margin: 0;
 }
@@ -90,7 +90,7 @@
 .order-badge {
     padding: 6px 12px;
     border-radius: 20px;
-    color: white;
+    color: var(--white-color);
     font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
@@ -110,7 +110,7 @@
 }
 
 .order-more-items {
-    color: #999;
+    color: var(--text-color);
     font-size: 0.85em;
     font-style: italic;
     margin: 5px 0 0 0;
@@ -121,11 +121,11 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
 
 .order-products-count {
-    color: #666;
+    color: var(--text-color);
     margin: 0;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .order-details__section {
-    background: #f9f9f9;
+    background: var(--white-color);
     padding: 15px;
     border-radius: 8px;
 }
@@ -164,7 +164,7 @@
 
 .order-details__section p {
     margin: 5px 0;
-    color: #666;
+    color: var(--text-color);
     font-size: 0.95em;
 }
 
@@ -179,7 +179,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px;
-    background: white;
+    background: var(--white-color);
     border-radius: 6px;
 }
 
@@ -196,7 +196,7 @@
 
 .order-product-item__qty {
     font-size: 0.85em;
-    color: #999;
+    color: var(--text-color);
 }
 
 .order-product-item__total {
@@ -206,7 +206,7 @@
 }
 
 .order-details__totals {
-    background: #f9f9f9;
+    background: var(--white-color);
     padding: 15px;
     border-radius: 8px;
 }
@@ -215,12 +215,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    color: #666;
+    color: var(--text-color);
 }
 
 .order-details__totals hr {
     border: none;
-    border-top: 2px solid #ddd;
+    border-top: 2px solid var(--border-color);
     margin: 10px 0;
 }
 
@@ -251,7 +251,7 @@
 }
 
 .empty-state p {
-    color: #666;
+    color: var(--text-color);
     margin-bottom: 25px;
 }
 
