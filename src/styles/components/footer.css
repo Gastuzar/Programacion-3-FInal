@@ -1,0 +1,26 @@
+@import '../variables.css';
+
+.footer {
+    background-color: var(--white-color);
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    border-radius: 7px;
+    box-shadow: var(--shadow);
+}
+
+.footer__p {
+    margin: 5px 0;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.footer__p a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer__p a:hover {
+    text-decoration: underline;
+}

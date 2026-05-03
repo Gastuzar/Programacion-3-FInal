@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin - Categorías</title>
     <link rel="stylesheet" href="../../../src/styles/style.css">
+    <link rel="stylesheet" href="../../../src/styles/admin/categories.css">
 </head>
 <body>
     <header class="header">
-        <h1 class="header__logo">Panel Admin</h1>
+        <h1 class="header__logo">🍕 Panel Admin</h1>
         <nav class="header__nav">
             <ul class="header__ul">
                 <li class="header__li">
                     <span id="admin-name">admin admin</span>
                 </li>
                 <li class="header__li"><a href="../client/home.html">Tienda</a></li>
-                <li class="header__li"><a href="./admin.html">Panel Admin</a></li>
+                <li class="header__li"><a href="./admin.html" class="active">Panel Admin</a></li>
                 <li class="header__li" id="logoutButton">
                     <a href="../auth/login/login.html">Cerrar Sesión</a>
                 </li>
@@ -23,80 +24,80 @@
         </nav>
     </header>
 
-    <aside class="aside">
-        <h2 class="aside__title">Administración</h2>
-        <p>Panel de Control</p>
+    <div class="admin--container">
+        <aside class="aside">
+            <h2 class="aside__title">Administración</h2>
+            <p class="aside__subtitle">Panel de Control</p>
             <ul class="aside__ul">
                 <li class="aside__li">
                     <a href="./admin.html">📊 Dashboard</a>
                 </li>
                 <li class="aside__li">
-                    <a href="./categorias.html">📁 Categorías</a>
+                    <a href="./categorias.html" class="active">📁 Categorías</a>
                 </li>
                 <li class="aside__li">
                     <a href="./productos.html">🍔 Productos</a>
                 </li>
                 <li class="aside__li">
-                    <a href="./orders.html" class="active">📦 Pedidos</a>
+                    <a href="./orders.html">📦 Pedidos</a>
                 </li>
             </ul>
-    </aside>
+        </aside>
+                <main class="main-dashboard">
+                    <div class="main__header">
+                        <h2>Gestión de Categorías</h2>
+                        <button id="btn-nueva-categoria" class="button button--success">+ Nueva Categoría</button>
+                    </div>
 
-    <main class="main">
-        <div class="main__header">
-            <h2>Gestión de Categorías</h2>
-            <button id="btn-nueva-categoria" class="button button--success">+ Nueva Categoría</button>
-        </div>
-
-        <table class="table">
-            <thead class="table__thead">
-                <tr class="table__tr">
-                    <th class="table__th">ID</th>
-                    <th class="table__th">Nombre</th>
-                    <th class="table__th">Descripción</th>
-                    <th class="table__th">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="table__tbody" id="tabla-categorias">
-                <!-- Las categorías se cargarán aquí dinámicamente -->
-            </tbody>
-        </table>
-    </main>
-
-    <!-- Modal para formulario de categoria -->
-    <div id="modal-categoria" class="modal">
-        <div class="modal__content">
-            <span class="modal__close">&times;</span>
-            <h2 class="modal__title" id="modal-titulo">Nueva Categoría</h2>
-            
-            <form id="formulario-categoria" class="form">
-                <input type="hidden" id="categoria-id" value="">
-                
-                <div class="form__group">
-                    <label class="form__label" for="input-nombre">Nombre:</label>
-                    <input 
-                        class="form__input" 
-                        id="input-nombre" 
-                        type="text" 
-                        placeholder="Ej: Hamburguesas"
-                        required>
-                </div>
-                
-                <div class="form__group">
-                    <label class="form__label" for="input-descripcion">Descripción:</label>
-                    <textarea 
-                        class="form__textarea" 
-                        id="input-descripcion" 
-                        rows="4"
-                        placeholder="Ej: Deliciosas hamburguesas artesanales"
-                        required></textarea>
-                </div>
-                
-                <button type="submit" class="button button--primary">Guardar</button>
-            </form>
-        </div>
+                    <table class="table">
+                        <thead class="table__thead">
+                            <tr class="table__tr">
+                                <th class="table__th">ID</th>
+                                <th class="table__th">Nombre</th>
+                                <th class="table__th">Descripción</th>
+                                <th class="table__th">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table__tbody" id="tabla-categorias">
+                            <!-- Las categorías se cargarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+            </main>
     </div>
 
+            <!-- Modal para formulario de categoria -->
+            <div id="modal-categoria" class="modal">
+                <div class="modal__content">
+                    <span class="modal__close">&times;</span>
+                    <h2 class="modal__title" id="modal-titulo">Nueva Categoría</h2>
+                    
+                    <form id="formulario-categoria" class="form">
+                        <input type="hidden" id="categoria-id" value="">
+                        
+                        <div class="form__group">
+                            <label class="form__label" for="input-nombre">Nombre:</label>
+                            <input 
+                                class="form__input" 
+                                id="input-nombre" 
+                                type="text" 
+                                placeholder="Ej: Hamburguesas"
+                                required>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label class="form__label" for="input-descripcion">Descripción:</label>
+                            <textarea 
+                                class="form__textarea" 
+                                id="input-descripcion" 
+                                rows="4"
+                                placeholder="Ej: Deliciosas hamburguesas artesanales"
+                                required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="button button--primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
     <footer class="footer">
         <p class="footer__p">Panel de administración - Food Store v1.0</p>
     </footer>

@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin - Categorías</title>
     <link rel="stylesheet" href="../../../src/styles/style.css">
+    <link rel="stylesheet" href="../../../src/styles/admin/products.css">
 </head>
 <body>
     <header class="header">
-        <h1 class="header__logo">Panel Admin</h1>
+        <h1 class="header__logo">🍕 Panel Admin</h1>
         <nav class="header__nav">
             <ul class="header__ul">
                 <li class="header__li">
                     <span id="admin-name">admin admin</span>
                 </li>
                 <li class="header__li"><a href="../client/home.html">Tienda</a></li>
-                <li class="header__li"><a href="./admin.html">Panel Admin</a></li>
+                <li class="header__li"><a href="./admin.html" class="active">Panel Admin</a></li>
                 <li class="header__li" id="logoutButton">
                     <a href="../auth/login/login.html">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
     </header>
-
-    <aside class="aside">
-        <h2 class="aside__title">Administración</h2>
-        <p>Panel de Control</p>
+    <div class="admin--container">
+        <aside class="aside">
+            <h2 class="aside__title">Administración</h2>
+            <p class="aside__subtitle">Panel de Control</p>
             <ul class="aside__ul">
                 <li class="aside__li">
                     <a href="./admin.html">📊 Dashboard</a>
@@ -34,89 +35,91 @@
                     <a href="./categorias.html">📁 Categorías</a>
                 </li>
                 <li class="aside__li">
-                    <a href="./productos.html">🍔 Productos</a>
+                    <a href="./productos.html" class="active">🍔 Productos</a>
                 </li>
                 <li class="aside__li">
-                    <a href="./orders.html" class="active">📦 Pedidos</a>
+                    <a href="./orders.html">📦 Pedidos</a>
                 </li>
             </ul>
-    </aside>
-<main class="main-admin">
-    <div class="main__header">
-        <h2>Gestión de Productos</h2>
-        <button id="btn-nuevo-producto" class="button button--success">+ Nuevo Producto</button>
+        </aside>
+        <main class="main-dashboard">
+                <div class="main__header">
+                    <h2>Gestión de Productos</h2>
+                    <button id="btn-nuevo-producto" class="button button--success">+ Nuevo Producto</button>
+                </div>
+
+                <table class="table">
+                    <thead class="table__thead">
+                        <tr class="table__tr">
+                            <th class="table__th">ID</th>
+                            <th class="table__th">Imagen</th>
+                            <th class="table__th">Nombre</th>
+                            <th class="table__th">Descripción</th>
+                            <th class="table__th">Precio</th>
+                            <th class="table__th">Categoría</th>
+                            <th class="table__th">Stock</th>
+                            <th class="table__th">Estado</th>
+                            <th class="table__th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-productos">
+                        </tbody>
+                </table>
+
+                <div id="modal-producto" class="modal">
+                    <div class="modal__content">
+                        <span class="modal__close">&times;</span>
+                        <h2 id="modal-titulo" class="modal__title">Nuevo Producto</h2>
+                        
+                        <form id="formulario-producto" class="form">
+                            <input type="hidden" id="producto-id">
+                            
+                            <div class="form__group">
+                                <label class="form__label">Nombre</label>
+                                <input type="text" id="input-nombre" class="form__input" placeholder="Hamburguesa triple" required>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">Descripción</label>
+                                <textarea id="input-descripcion" class="form__textarea" placeholder="Descripción del producto..." required></textarea>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">Precio</label>
+                                <input type="number" id="input-precio" class="form__input" required>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">Stock</label>
+                                <input type="number" id="input-stock" class="form__input" required>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">Categoría</label>
+                                <select id="input-categoriaId" class="form__input">
+                                    <option value="1">Hamburguesas</option>
+                                    <option value="2">Pizzas</option>
+                                    <option value="3">Bebidas</option>
+                                </select>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">URL de Imagen</label>
+                                <input type="text" id="input-imagen" class="form__input" required>
+                            </div>
+
+                            <div class="form__availability">
+                                <input type="checkbox" id="input-disponible" checked>
+                                <label for="input-disponible">Producto disponible</label>
+                            </div>
+                            
+                            <button type="submit" class="button button--primary button--large">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+        </main>
     </div>
 
-    <table class="table">
-        <thead class="table__thead">
-            <tr class="table__tr">
-                <th class="table__th">ID</th>
-                <th class="table__th">Imagen</th>
-                <th class="table__th">Nombre</th>
-                <th class="table__th">Descripción</th>
-                <th class="table__th">Precio</th>
-                <th class="table__th">Categoría</th>
-                <th class="table__th">Stock</th>
-                <th class="table__th">Estado</th>
-                <th class="table__th">Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-productos">
-            </tbody>
-    </table>
-
-    <div id="modal-producto" class="modal">
-        <div class="modal__content">
-            <span class="modal__close">&times;</span>
-            <h2 id="modal-titulo" class="modal__title">Nuevo Producto</h2>
-            
-            <form id="formulario-producto" class="form">
-                <input type="hidden" id="producto-id">
-                
-                <div class="form__group">
-                    <label class="form__label">Nombre</label>
-                    <input type="text" id="input-nombre" class="form__input" placeholder="Hamburguesa triple" required>
-                </div>
-
-                <div class="form__group">
-                    <label class="form__label">Descripción</label>
-                    <textarea id="input-descripcion" class="form__textarea" placeholder="Descripción del producto..." required></textarea>
-                </div>
-
-                <div class="form__group">
-                    <label class="form__label">Precio</label>
-                    <input type="number" id="input-precio" class="form__input" required>
-                </div>
-
-                <div class="form__group">
-                    <label class="form__label">Stock</label>
-                    <input type="number" id="input-stock" class="form__input" required>
-                </div>
-
-                <div class="form__group">
-                    <label class="form__label">Categoría</label>
-                    <select id="input-categoriaId" class="form__input">
-                        <option value="1">Hamburguesas</option>
-                        <option value="2">Pizzas</option>
-                        <option value="3">Bebidas</option>
-                    </select>
-                </div>
-
-                <div class="form__group">
-                    <label class="form__label">URL de Imagen</label>
-                    <input type="text" id="input-imagen" class="form__input" required>
-                </div>
-
-                <div class="form__availability">
-                    <input type="checkbox" id="input-disponible" checked>
-                    <label for="input-disponible">Producto disponible</label>
-                </div>
-                
-                <button type="submit" class="button button--primary button--large">Guardar</button>
-            </form>
-        </div>
-    </div>
-</main>
     <footer class="footer">
         <p class="footer__p">Panel de administracion - Food Store v1.0</p>
     </footer>

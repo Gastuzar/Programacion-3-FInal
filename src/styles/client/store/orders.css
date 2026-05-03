@@ -1,3 +1,9 @@
+@import '../../variables.css';
+@import '../../components/header.css';
+@import '../../components/footer.css';
+@import '../../components/modal.css';
+@import '../../components/button.css';
+
 .orders-main {
     max-width: 1000px;
     margin: 40px auto;
@@ -9,12 +15,16 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    gap: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .orders-title {
-    font-size: 32px;
-    color: #333;
+    font-size: 2em;
+    color: var(--text-color);
     margin: 0;
+    font-weight: 700;
 }
 
 .orders-filter {
@@ -23,12 +33,19 @@
     gap: 10px;
 }
 
+.orders-filter label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
 .filter-select {
     padding: 10px 15px;
-    border: 1px solid #ddd;
+    border: 1.5px solid var(--border-color);
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
+    background: var(--white-color);
+    font-family: 'Montserrat-Medium', sans-serif;
 }
 
 .orders-container {
@@ -36,9 +53,8 @@
     gap: 20px;
 }
 
-/* Order Card */
 .order-card {
-    background: white;
+    background: var(--white-color);
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -59,14 +75,15 @@
 }
 
 .order-card__title {
-    font-size: 20px;
+    font-size: 1.3em;
     margin: 0 0 5px 0;
-    color: #333;
+    color: var(--text-color);
+    font-weight: 700;
 }
 
 .order-card__date {
     color: #666;
-    font-size: 14px;
+    font-size: 0.9em;
     margin: 0;
 }
 
@@ -74,8 +91,8 @@
     padding: 6px 12px;
     border-radius: 20px;
     color: white;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 0.75em;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
@@ -94,7 +111,7 @@
 
 .order-more-items {
     color: #999;
-    font-size: 13px;
+    font-size: 0.85em;
     font-style: italic;
     margin: 5px 0 0 0;
 }
@@ -113,16 +130,111 @@
 }
 
 .order-total {
-    font-size: 24px;
-    color: #ff6347;
+    font-size: 1.8em;
+    color: var(--primary-color);
     margin: 0;
+    font-weight: 700;
 }
 
-/* Empty State */
+.order-card__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+/* Order Details en Modal */
+.order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-details__section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.order-details__section h3 {
+    font-size: 1.1em;
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.order-details__section p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.95em;
+}
+
+.order-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 6px;
+}
+
+.order-product-item__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order-product-item__info strong {
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.order-product-item__qty {
+    font-size: 0.85em;
+    color: #999;
+}
+
+.order-product-item__total {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.order-details__totals {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.order-details__totals hr {
+    border: none;
+    border-top: 2px solid #ddd;
+    margin: 10px 0;
+}
+
+.total-row--final {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    background: white;
+    background: var(--white-color);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -133,8 +245,8 @@
 }
 
 .empty-state h3 {
-    font-size: 24px;
-    color: #333;
+    font-size: 1.8em;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 

@@ -1,0 +1,72 @@
+@import '../variables.css';
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Montserrat-Medium', sans-serif;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.button--primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.button--primary:hover {
+    background-color: var(--focus-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button--secondary {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.button--secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.button--success {
+    background-color: #28a745;
+    color: var(--white-color);
+}
+
+.button--success:hover {
+    background-color: #218838;
+}
+
+.button--warning {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.button--warning:hover {
+    background-color: #e0a800;
+}
+
+.button--danger {
+    background-color: #dc3545;
+    color: var(--white-color);
+}
+
+.button--danger:hover {
+    background-color: #c82333;
+}
+
+.button--small {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.button--large {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}

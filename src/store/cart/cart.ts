@@ -8,9 +8,10 @@ import {
     saveProducts
 } from "../../utils/localStorage";
 import { navigate } from "../../utils/navigate";
-import { logout } from "../../utils/auth";
+import { logout, verificarClient } from "../../utils/auth";
 import type { CartItem } from "../../types/Cart";
 import type { Pedido } from "../../types/Pedido";
+import { getUsers } from "../../utils/localStorage";
 
 // Constantes
 const SHIPPING_COST = 500;
@@ -260,6 +261,10 @@ const procederAlPago = (): void => {
     const btnConfirmarPago = document.getElementById("btn-confirmar-pago");
     const modalOverlay = document.getElementById("modal-pago");
     
+    if (modalOverlay) {
+    modalOverlay.classList.add("modal--active"); // Esta es la clase que dispara el display: flex
+    }
+
     btnCerrarModal?.addEventListener("click", cerrarModal);
     modalOverlay?.addEventListener("click", (e) => {
         if (e.target === modalOverlay) cerrarModal();
@@ -282,8 +287,16 @@ const validarYConfirmarPedido = (cart: CartItem[], subtotal: number): void => {
     const direccion = (document.getElementById("input-direccion") as HTMLInputElement)?.value.trim();
     const metodoPago = (document.getElementById("input-metodo-pago") as HTMLSelectElement)?.value;
     const notas = (document.getElementById("input-notas") as HTMLTextAreaElement)?.value.trim();
+
+    // Validar sesión
+    const sessionData = localStorage.getItem("userData");
+    const currentUser = sessionData ? JSON.parse(sessionData) : null;
+    if (!currentUser) {
+    alert("Debes iniciar sesión para finalizar la compra");
+    return;
+    }
     
-    // Validaciones
+    // Validaciones adicionales
     if (!telefono) {
         alert("Por favor, ingresa un teléfono de contacto");
         return;
@@ -304,6 +317,7 @@ const validarYConfirmarPedido = (cart: CartItem[], subtotal: number): void => {
     
     const pedido: Pedido = {
         id: Date.now(),
+        userId: currentUser.id,
         items: cart,
         subtotal,
         envio: SHIPPING_COST,
@@ -391,15 +405,8 @@ const mostrarNotificacion = (mensaje: string): void => {
     }, 2000);
 };
 
-// Verificar admin
-const verificarAdmin = (): void => {
-    const userData = JSON.parse(localStorage.getItem("userData") || "null");
-    const adminPanel = document.getElementById("adminPanel");
-    
-    if (adminPanel && userData?.role === "admin") {
-        adminPanel.style.display = "block";
-    }
-};
+// Verificar cliente
+verificarClient();
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", () => {
@@ -409,7 +416,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
     
-    verificarAdmin();
     renderCart();
     
     const btnCheckout = document.getElementById("btn-checkout");

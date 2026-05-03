@@ -1,28 +1,6 @@
 import { getOrders } from "../../utils/localStorage";
-import { logout } from "../../utils/auth";
+import { logout, verificarClient } from "../../utils/auth";
 import type { Pedido } from "../../types/Pedido";
-
-// Verificar admin
-const verificarAdmin = (): void => {
-    const userData = JSON.parse(localStorage.getItem("userData") || "null");
-    const adminPanel = document.getElementById("adminPanel");
-    
-    if (adminPanel && userData?.role === "admin") {
-        adminPanel.style.display = "block";
-    }
-};
-
-// Obtener color del badge según estado
-const getEstadoColor = (estado: string): string => {
-    const colores: Record<string, string> = {
-        'Pendiente': '#ffc107',
-        'Procesado': '#17a2b8',
-        'En Preparación': '#6c757d',
-        'Enviado': '#007bff',
-        'Entregado': '#28a745'
-    };
-    return colores[estado] || '#6c757d';
-};
 
 // Formatear fecha
 const formatearFecha = (isoString: string): string => {
@@ -41,7 +19,6 @@ const formatearFecha = (isoString: string): string => {
 const crearHTMLPedido = (pedido: Pedido): string => {
     const fecha = formatearFecha(pedido.fecha);
     const totalProductos = pedido.items.reduce((sum, item) => sum + item.cantidad, 0);
-    const estadoColor = getEstadoColor(pedido.estado);
     
     return `
         <div class="order-card">
@@ -50,7 +27,7 @@ const crearHTMLPedido = (pedido: Pedido): string => {
                     <h3 class="order-card__title">Pedido #${pedido.id}</h3>
                     <p class="order-card__date">📅 ${fecha}</p>
                 </div>
-                <span class="order-badge" style="background-color: ${estadoColor}">
+                <span class="order-badge order-badge--${pedido.estado.replace(/\s+/g, '')}">
                     ${pedido.estado}
                 </span>
             </div>
@@ -88,6 +65,15 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
     if (!container) return;
     
     let pedidos = getOrders();
+
+    // 1. Recuperar el usuario actual desde el localStorage
+    const sessionData = localStorage.getItem("userData");
+    const currentUser = sessionData ? JSON.parse(sessionData) : null;
+
+    if (!currentUser) {
+        console.error("No se encontró una sesión activa.");
+        return;
+    }
     
     // Ordenar por fecha (más reciente primero)
     pedidos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
@@ -96,7 +82,8 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
     if (filtro !== 'Todos') {
         pedidos = pedidos.filter(p => p.estado === filtro);
     }
-    
+    const pedidosUsuario = pedidos.filter(pedido => pedido.userId === currentUser.id);
+
     if (pedidos.length === 0) {
         container.innerHTML = `
             <div class="empty-state">
@@ -108,8 +95,10 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
         `;
         return;
     }
+    if (pedidosUsuario.length > 0) {
+        container.innerHTML = pedidosUsuario.map(pedido => crearHTMLPedido(pedido)).join('');
+    }
     
-    container.innerHTML = pedidos.map(crearHTMLPedido).join('');
 };
 
 // Configurar filtro
@@ -125,13 +114,7 @@ const configurarFiltro = (): void => {
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     // Verificar sesión
-    const currentUser = JSON.parse(localStorage.getItem("userData") || "null");
-    if (!currentUser) {
-        logout();
-        return;
-    }
-    
-    verificarAdmin();
+    verificarClient();
     renderizarPedidos();
     configurarFiltro();
     

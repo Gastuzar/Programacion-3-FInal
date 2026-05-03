@@ -1,182 +1,294 @@
 import type { Categoria } from "../../types/Categories";
 import type { Producto } from "../../types/Products";
-import { logout } from "../../utils/auth";
-import { getProducts } from "../../utils/localStorage";
-import { getCategories } from "../../utils/localStorage";
+import { logout, verificarClient } from "../../utils/auth";
+import { getProducts, getCategories } from "../../utils/localStorage";
 import { navigate } from "../../utils/navigate";
 
-// --- Funciones de Renderizado ---
+// ============================================================================
+// UTILIDADES DE ESTADO - Leer el estado desde el DOM
+// ============================================================================
+
+/**
+ * Obtiene la categoría activa del DOM en lugar de una variable global
+ */
+const getCategoriaActiva = (): string | number => {
+    const enlaceActivo = document.querySelector<HTMLAnchorElement>('[data-categoria-id].active');
+    return enlaceActivo?.dataset.categoriaId || 'all';
+};
+
+/**
+ * Obtiene el texto de búsqueda actual del input
+ */
+const getTextoBusqueda = (): string => {
+    const input = document.getElementById('buscarProductos') as HTMLInputElement;
+    return input?.value.toLowerCase().trim() || '';
+};
+
+/**
+ * Obtiene el criterio de ordenamiento actual del select
+ */
+const getCriterioOrden = (): string => {
+    const select = document.getElementById('btn-ordenar') as HTMLSelectElement;
+    return select?.value || 'default';
+};
+
+// ============================================================================
+// FUNCIONES PURAS - No dependen de estado global
+// ============================================================================
+
+/**
+ * Filtra productos según categoría, búsqueda y ordenamiento
+ */
+const obtenerProductosFiltrados = (): Producto[] => {
+    const todosLosProductos = getProducts();
+    const categoriaActiva = getCategoriaActiva();
+    const textoBusqueda = getTextoBusqueda();
+    const criterioOrden = getCriterioOrden();
+
+    // 1. Filtrar por categoría
+    let filtrados = categoriaActiva === 'all' 
+        ? todosLosProductos 
+        : todosLosProductos.filter(p => p.categoriaId === Number(categoriaActiva));
+
+    // 2. Filtrar por texto de búsqueda
+    if (textoBusqueda) {
+        filtrados = filtrados.filter(p => 
+            p.nombre.toLowerCase().includes(textoBusqueda) ||
+            p.descripcion.toLowerCase().includes(textoBusqueda)
+        );
+    }
+
+    // 3. Ordenar
+    const productosOrdenados = ordenarProductos(filtrados, criterioOrden);
+    
+    return productosOrdenados;
+};
+
+/**
+ * Ordena un array de productos según el criterio
+ */
+const ordenarProductos = (productos: Producto[], criterio: string): Producto[] => {
+    const copia = [...productos];
+    
+    switch (criterio) {
+        case 'precio-asc':
+            return copia.sort((a, b) => a.precio - b.precio);
+        case 'precio-desc':
+            return copia.sort((a, b) => b.precio - a.precio);
+        case 'az':
+            return copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        case 'za':
+            return copia.sort((a, b) => b.nombre.localeCompare(a.nombre));
+        default:
+            return copia;
+    }
+};
+
+// ============================================================================
+// RENDERIZADO - Templates HTML
+// ============================================================================
 
 const crearHTMLCategorias = (categoria: Categoria): string => {
     return `<li class="aside__li">
-        <a href="#" data-categoria-id="${categoria.id}">${categoria.nombre}</a>
+        <a href="#" class="categoria-link" data-categoria-id="${categoria.id}">
+            ${categoria.nombre}
+        </a>
     </li>`;
 };
 
 const crearHTMLProducto = (producto: Producto): string => {
+    const estadoClass = producto.estado === 'Disponible' 
+        ? 'product-card__badge--disponible' 
+        : 'product-card__badge--agotado';
+    
     return `
-        <article class="article" data-id="${producto.id}" style="cursor: pointer;">
-            <img src="${producto.imagen}" alt="${producto.nombre} imagen" class="article__img">
-            <h3 class="article__title">${producto.nombre}</h3>
-            <p class="article__description">${producto.descripcion}</p>
-            <p class="article__price">Precio: <strong class="article__strong">$${producto.precio}</strong></p>
-            <p class="article__stock"><strong class="article__strong">${producto.estado}</strong></p>
+        <article class="product-card" data-producto-id="${producto.id}">
+            <img src="${producto.imagen}" 
+                 alt="${producto.nombre}" 
+                 class="product-card__image"
+                 onerror="this.src='../../assets/images/placeholder.jpg'">
+            <h3 class="product-card__title">${producto.nombre}</h3>
+            <p class="product-card__description">${producto.descripcion}</p>
+            <div class="product-card__footer">
+                <p class="product-card__price">$${producto.precio.toFixed(2)}</p>
+                <span class="product-card__badge ${estadoClass}">
+                    ${producto.estado}
+                </span>
+            </div>
         </article>
     `;
 };
-const mostrarPanelAdmin = (rol: string): void => {
-    const adminPanelLink = document.getElementById("adminPanel");
-    if (adminPanelLink) {
-        if (rol === "admin") {
-            adminPanelLink.style.display = "block";
-        } else {
-            adminPanelLink.style.display = "none";
-        }
+
+// ============================================================================
+// RENDERIZADO EN EL DOM
+// ============================================================================
+
+const renderizarProductos = (): void => {
+    const contenedor = document.getElementById("contenedor-productos");
+    if (!contenedor) return;
+
+    const productos = obtenerProductosFiltrados();
+
+    if (productos.length === 0) {
+        const textoBusqueda = getTextoBusqueda();
+        const mensaje = textoBusqueda 
+            ? `No se encontraron productos que coincidan con "${textoBusqueda}"`
+            : 'No hay productos disponibles en esta categoría';
+        
+        contenedor.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state__icon">🔍</div>
+                <h3 class="empty-state__title">Sin resultados</h3>
+                <p class="empty-state__message">${mensaje}</p>
+            </div>
+        `;
+        return;
     }
+
+    contenedor.innerHTML = productos.map(crearHTMLProducto).join("");
+    configurarClickProductos();
 };
 
-// --- Funciones de Carga ---
-
-const cargarProductos = (productos: Producto[]): void => {
-    const contenedorProductos = document.getElementById("contenedor-productos");
-
-
-    if (contenedorProductos) {
-        if (productos.length > 0) {
-            contenedorProductos.innerHTML = productos.map(crearHTMLProducto).join("");
-        } else {
-            contenedorProductos.innerHTML = `
-                <div class="empty-state">
-                    <p>No hay productos disponibles en este momento</p>
-                </div>
-            `;
-        }
-    }
-};
-
-const cargarCategorias = (categorias: Categoria[]): void => {
+const renderizarCategorias = (): void => {
     const listaCategorias = document.getElementById("lista-categorias");
-    
-    if (listaCategorias) {
-        if (categorias.length > 0) {
-            // Agregar opción "Todas" al inicio
-            const htmlTodas = `<li class="aside__li">
-                <a href="#" data-categoria-id="all" class="categoria-link active">Todas</a>
-            </li>`;
-            
-            const htmlCategorias = categorias.map(crearHTMLCategorias).join("");
-            listaCategorias.innerHTML = htmlTodas + htmlCategorias;
-            
-            // Configurar eventos de filtrado por categoría
-            configurarFiltrosCategorias();
-        } else {
-            listaCategorias.innerHTML = `
-                <li class="aside__li">
-                    <p class="aside__empty">No hay categorías creadas</p>
-                    <small>Ve al panel de administración para crear categorías</small>
-                </li>
-            `;
-        }
-    } else {
-        console.error("No se encontró el elemento #lista-categorias en el HTML");
+    if (!listaCategorias) return;
+
+    const categorias = getCategories();
+
+    if (categorias.length === 0) {
+        listaCategorias.innerHTML = `
+            <li class="aside__li">
+                <p class="aside__empty">No hay categorías creadas</p>
+                <small class="aside__help-text">
+                    Ve al panel de administración para crear categorías
+                </small>
+            </li>
+        `;
+        return;
     }
+
+    // Opción "Todas" + Categorías
+    const htmlTodas = `
+        <li class="aside__li">
+            <a href="#" data-categoria-id="all" class="categoria-link active">Todas</a>
+        </li>`;        
+    
+    const htmlCategorias = categorias.map(crearHTMLCategorias).join("");
+    listaCategorias.innerHTML = htmlTodas + htmlCategorias;
+    
+    configurarClickCategorias();
 };
 
-// Nueva función: Filtrar productos por categoría
-const filtrarProductosPorCategoria = (categoriaId: number | string): void => {
-    const todosProductos = getProducts();
-    
-    let productosFiltrados: Producto[];
-    
-    if (categoriaId === 'all') {
-        productosFiltrados = todosProductos;
-    } else {
-        productosFiltrados = todosProductos.filter(
-            p => p.categoriaId === Number(categoriaId)
-        );
-    }
-    
-    cargarProductos(productosFiltrados);
-    configurarEventosBotones();
+const inicializarSelectOrden = (): void => {
+    const selectOrden = document.getElementById('btn-ordenar') as HTMLSelectElement;
+    if (!selectOrden) return;
+
+    selectOrden.innerHTML = `
+        <option value="default" selected>Ordenar por...</option>
+        <option value="precio-asc">Precio: Menor a Mayor</option>
+        <option value="precio-desc">Precio: Mayor a Menor</option>
+        <option value="az">Nombre: A - Z</option>
+        <option value="za">Nombre: Z - A</option>
+    `;
 };
 
-// Nueva función: Configurar eventos de filtros de categorías
-const configurarFiltrosCategorias = (): void => {
-    const enlacesCategorias = document.querySelectorAll<HTMLAnchorElement>('[data-categoria-id]');
+// ============================================================================
+// EVENTOS
+// ============================================================================
+
+const configurarClickProductos = (): void => {
+    document.querySelectorAll<HTMLElement>('.product-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const productoId = card.dataset.productoId;
+            if (productoId) {
+                localStorage.setItem('selectedProductId', productoId);
+                navigate('../../pages/client/productDetails');
+            }
+        });
+    });
+};
+
+const configurarClickCategorias = (): void => {
+    const enlaces = document.querySelectorAll<HTMLAnchorElement>('.categoria-link');
     
-    enlacesCategorias.forEach(enlace => {
+    enlaces.forEach(enlace => {
         enlace.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Remover clase active de todos los enlaces
-            enlacesCategorias.forEach(link => link.classList.remove('active'));
-            
-            // Agregar clase active al enlace clickeado
+            // Actualizar clases activas en el DOM (esto es nuestro "estado")
+            enlaces.forEach(link => link.classList.remove('active'));
             enlace.classList.add('active');
             
-            // Filtrar productos
-            const categoriaId = enlace.dataset.categoriaId;
-            if (categoriaId) {
-                filtrarProductosPorCategoria(categoriaId);
-            }
-        });
-    });
-};
-//sacarle agregar al carrito y ver detalles y solo diga precio y disponibilidad
-const configurarEventosBotones = (): void => {
-    // Botones de ver detalles
-    document.querySelectorAll<HTMLElement>(".article").forEach(card => {
-        card.addEventListener("click", () => {         
-            const productoId = card.dataset.id;
-            if (productoId) {
-                localStorage.setItem("selectedProductId", productoId);
-                // Navegamos pasando el ID como parámetro en la URL
-                navigate(`../../pages/client/productDetails`);
-            }
+            // Re-renderizar con el nuevo estado del DOM
+            renderizarProductos();
         });
     });
 };
 
-
-// --- Inicialización UNIFICADA ---
-
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Verificación de sesión
-    const currentUser = JSON.parse(localStorage.getItem("userData") || "null");
-    if (!currentUser) {
-        logout();
-        return;
-    }
-    mostrarPanelAdmin(currentUser.rol);
-
-    // 2. OBTENER DATOS REALES DEL STORAGE
-    const productosData = getProducts();
-    const categoriasData = getCategories(); // ← OBTENER CATEGORÍAS DEL STORAGE
-
-    // 3. RENDERIZAR CATEGORÍAS
-    cargarCategorias(categoriasData);
-
-    // 4. RENDERIZAR PRODUCTOS
-    if (productosData.length > 0) {
-        cargarProductos(productosData);
-        configurarEventosBotones();
-    } else {
-        console.log("No hay productos en el LocalStorage");
-        // Mostrar mensaje en el contenedor
-        const contenedorProductos = document.getElementById("contenedor-productos");
-        if (contenedorProductos) {
-            contenedorProductos.innerHTML = `
-                <div class="empty-state">
-                    <h3>No hay productos disponibles</h3>
-                    <p>Actualmente no tenemos productos en el catálogo.</p>
-                    <p>Por favor, vuelve más tarde o contacta al administrador.</p>
-                </div>
-            `;
-        }
-    }
-
+const configurarBusqueda = (): void => {
+    const form = document.querySelector('.main__form');
+    const input = document.getElementById('buscarProductos') as HTMLInputElement;
     
-    // 5. Configurar Logout
-    const buttonLogout = document.getElementById("logoutButton") as HTMLButtonElement;
-    buttonLogout?.addEventListener("click", logout);
-});
+    // Búsqueda al enviar el formulario
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        renderizarProductos();
+    });
+    
+    // Búsqueda en tiempo real (opcional)
+    input?.addEventListener('input', debounce(() => {
+        renderizarProductos();
+    }, 300));
+};
+
+const configurarOrdenamiento = (): void => {
+    const select = document.getElementById('btn-ordenar') as HTMLSelectElement;
+    
+    select?.addEventListener('change', () => {
+        renderizarProductos();
+    });
+};
+
+// ============================================================================
+// UTILIDADES
+// ============================================================================
+
+/**
+ * Debounce para optimizar la búsqueda en tiempo real
+ */
+function debounce<T extends (...args: any[]) => void>(
+    func: T,
+    wait: number
+): (...args: Parameters<T>) => void {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    
+    return function(this: any, ...args: Parameters<T>) {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+// ============================================================================
+// INICIALIZACIÓN
+// ============================================================================
+
+const inicializar = (): void => {
+    // 1. Verificar autenticación
+    verificarClient();
+
+    // 2. Renderizar interfaz inicial
+    renderizarCategorias();
+    inicializarSelectOrden();
+    renderizarProductos();
+
+    // 3. Configurar eventos
+    configurarBusqueda();
+    configurarOrdenamiento();
+
+    // 4. Configurar logout
+    const btnLogout = document.getElementById('logoutButton');
+    btnLogout?.addEventListener('click', logout);
+};
+
+// Ejecutar al cargar el DOM
+document.addEventListener('DOMContentLoaded', inicializar);

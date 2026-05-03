@@ -2,8 +2,11 @@ import { getProducts, getCategories, addToCart } from "../../utils/localStorage"
 import { navigate } from "../../utils/navigate";
 import type { Producto }  from "../../types/Products";
 import type { Categoria } from "../../types/Categories";
+import { logout, verificarClient } from "../../utils/auth";
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Verificación de sesión
+    verificarClient();
     // Recuperar el ID del storage
     const idGuardado = localStorage.getItem("selectedProductId");
     const id = parseInt(idGuardado || "0");
@@ -20,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Configurar botón del carrito
     configurarBotonCart(producto);
+    // Logout
+    const btnLogout = document.getElementById('logoutButton');
+    btnLogout?.addEventListener('click', logout);
 });
 
 function renderizarDatosProducto(producto: Producto, categorias: Categoria[]) {
@@ -34,11 +40,12 @@ function renderizarDatosProducto(producto: Producto, categorias: Categoria[]) {
     const statusEl = document.getElementById("detail-status");
     if (statusEl) {
         const enStock = (producto.stock || 0) > 0;
-        const color = enStock ? "#1a9c6d" : "#ff3d77";
+        // Solo manejamos la CLASE, no el estilo
+        const claseEstado = enStock ? "status-badge--available" : "status-badge--out";
         const texto = enStock ? "Disponible" : "Agotado";
         
         statusEl.innerHTML = `
-            <span style="background: ${color}; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem;">
+            <span class="status-badge ${claseEstado}">
                 ${texto.toUpperCase()} ${enStock ? `(Stock: ${producto.stock})` : ''}
             </span>
         `;
@@ -120,30 +127,17 @@ const configurarBotonCart = (producto: Producto): void => {
 // Mostrar notificación temporal
 const mostrarNotificacion = (mensaje: string): void => {
     const notification = document.createElement('div');
-    notification.className = 'notification';
+    notification.className = 'notification'; // Usamos la clase CSS
     notification.textContent = mensaje;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #1a9c6d;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 10000;
-        opacity: 0;
-        transition: opacity 0.3s;
-    `;
     
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.style.opacity = '1';
+        notification.classList.add('notification--show');
     }, 10);
     
     setTimeout(() => {
-        notification.style.opacity = '0';
+        notification.classList.remove('notification--show');
         setTimeout(() => notification.remove(), 300);
     }, 2000);
 };

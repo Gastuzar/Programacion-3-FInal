@@ -1,0 +1,147 @@
+@import '../variables.css';
+
+/* Cards de productos */
+.product-card {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-card__category {
+    font-size: 0.75em;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.product-card__title {
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.product-card__description {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.product-card__price {
+    margin: 10px 0;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.product-card__badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.product-card__badge--disponible {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.product-card__badge--agotado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.product-card__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Cards de dashboard admin */
+.dashboard-card {
+    border-radius: 15px;
+    padding: 25px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card--purple {
+    background: linear-gradient(135deg, #7b61ff, #563dff);
+}
+
+.dashboard-card--pink {
+    background: linear-gradient(135deg, #ff61a6, #ff3d77);
+}
+
+.dashboard-card--blue {
+    background: linear-gradient(135deg, #32ccff, #2294ff);
+}
+
+.dashboard-card--green {
+    background: linear-gradient(135deg, #42ffbb, #20e39b);
+}
+
+.dashboard-card__icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.dashboard-card__title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.dashboard-card__number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.dashboard-card__button {
+    background: white;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.dashboard-card__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}

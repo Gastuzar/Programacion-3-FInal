@@ -9,17 +9,18 @@
 </head>
 <body>
     <header class="header">
-        <h1 class="header__logo">Food Store</h1>
+        <h1 class="header__logo">🍕 Food Store</h1>
         <nav class="header__nav">
             <ul class="header__ul">
                 <li class="header__li"><a href="./home.html">Inicio</a></li>
                 <li class="header__li"><a href="./orders.html" class="active">Mis Pedidos</a></li>
                 <li class="header__li"><a href="./cart.html">Carrito</a></li>
-                <li class="header__li" id="adminPanel" style="display: none;">
-                    <a href="../admin/orders.html">Panel Admin</a>
-                </li>
                 <li class="header__li" id="logoutButton">
                     <a href="../auth/login/login.html">Cerrar Sesión</a>
+                </li>
+                <!-- Solo se debe ver si sos admin -->
+                <li class="header__li" id="adminPanel" style="display: none;">
+                    <a href="../../pages/admin/admin.html">Panel Admin</a>
                 </li>
             </ul>
         </nav>

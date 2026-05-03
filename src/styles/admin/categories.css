@@ -1,0 +1,36 @@
+@import '../variables.css';
+@import './dashboard.css';
+@import './admin-layout.css';
+@import '../components/table.css';
+@import '../components/modal.css';
+@import '../components/form.css';
+@import '../components/button.css';
+
+
+.main-dashboard {
+    flex: 1 !important; /* Obliga a ocupar todo el ancho restante */
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: var(--white-color);
+    min-width: 0; /* Evita que el contenido interno desborde el flex */
+}
+
+.table {
+    width: 100% !important; /* La tabla debe ignorar el ancho de sus celdas y estirarse */
+    border-collapse: collapse;
+}
+
+/* Estilos específicos para categorías si los necesitas */
+.category-description {
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    .category-description {
+        max-width: 200px;
+    }
+}

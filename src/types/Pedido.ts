@@ -1,7 +1,9 @@
 import type { CartItem } from "./Cart";
+import type { IUser } from "./IUser";
 
 export interface Pedido {
     id: number; // Cambiar a number para usar Date.now()
+    userId: IUser['id'];
     items: CartItem[];
     subtotal: number; // Añadir subtotal
     envio: number; // Añadir costo de envío

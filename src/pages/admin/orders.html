@@ -9,22 +9,21 @@
 </head>
 <body>
     <header class="header">
-        <h1 class="header__logo">🍕 Food Store</h1>
+        <h1 class="header__logo">🍕 Panel Admin</h1>
         <nav class="header__nav">
             <ul class="header__ul">
                 <li class="header__li">
                     <span id="admin-name">admin admin</span>
                 </li>
                 <li class="header__li"><a href="../client/home.html">Tienda</a></li>
-                <li class="header__li"><a href="./admin.html">Panel Admin</a></li>
+                <li class="header__li"><a href="./admin.html" class="active">Panel Admin</a></li>
                 <li class="header__li" id="logoutButton">
                     <a href="../auth/login/login.html">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
     </header>
-
-    <div class="admin-layout">
+    <div class="admin--container">
         <aside class="aside">
             <h2 class="aside__title">Administración</h2>
             <p class="aside__subtitle">Panel de Control</p>
@@ -43,35 +42,37 @@
                 </li>
             </ul>
         </aside>
-
-        <main class="admin-main">
-            <div class="admin-header">
-                <h1 class="admin-title">Gestión de Pedidos</h1>
-                
-                <div class="admin-filter">
-                    <select id="filter-status-admin" class="filter-select">
-                        <option value="Todos">Todos los pedidos</option>
-                        <option value="Pendiente">Pendiente</option>
-                        <option value="Procesado">Procesado</option>
-                        <option value="En Preparación">En Preparación</option>
-                        <option value="Enviado">Enviado</option>
-                        <option value="Entregado">Entregado</option>
-                    </select>
+        
+        <div class="admin-layout">
+            <main class="admin-main">
+                <div class="admin-header">
+                    <h1 class="admin-title">Gestión de Pedidos</h1>
+                    
+                    <div class="admin-filter">
+                        <select id="filter-status-admin" class="filter-select">
+                            <option value="Todos">Todos los pedidos</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Procesado">Procesado</option>
+                            <option value="En Preparación">En Preparación</option>
+                            <option value="Enviado">Enviado</option>
+                            <option value="Entregado">Entregado</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div id="orders-admin-container" class="orders-admin-container">
-                <!-- Los pedidos se cargarán aquí dinámicamente -->
-            </div>
-        </main>
-    </div>
+                <div id="orders-admin-container" class="orders-admin-container">
+                    <!-- Los pedidos se cargarán aquí dinámicamente -->
+                </div>
+            </main>
+        </div>
 
-    <!-- Modal de detalles del pedido -->
-    <div id="modal-order-details" class="modal" style="display: none;">
-        <div class="modal-content modal-content--large">
-            <span class="modal__close" id="close-modal">&times;</span>
-            <div id="order-details-content">
-                <!-- El contenido se cargará dinámicamente -->
+        <!-- Modal de detalles del pedido -->
+        <div id="modal-order-details" class="modal" style="display: none;">
+            <div class="modal-content modal-content--large">
+                <span class="modal__close" id="close-modal">&times;</span>
+                <div id="order-details-content">
+                    <!-- El contenido se cargará dinámicamente -->
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,138 @@
+@import '../variables.css';
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal--active {
+    display: flex !important;
+}
+
+.modal__content {
+    background-color: var(--white-color);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s;
+}
+
+.modal__content--large {
+    max-width: 700px;
+}
+
+.modal__close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    line-height: 1;
+}
+
+.modal__close:hover {
+    color: #333;
+}
+
+.modal__title {
+    margin: 0 0 25px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 3, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal--show {
+    display: flex; /* Se muestra cuando tiene la clase */
+}
+.order-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.75rem; /* Tamaño fijo para que no salte */
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    white-space: nowrap;
+    height: fit-content; /* Evita que crezca como en tu imagen */
+}
+
+.order-badge--Pendiente { background-color: #ffc107; color: #000; }
+.order-badge--Procesado { background-color: #17a2b8; color: #fff; }
+.order-badge--EnPreparación { background-color: #6c757d; color: #fff; }
+.order-badge--Enviado { background-color: #007bff; color: #fff; }
+.order-badge--Entregado { background-color: #28a745; color: #fff; }
+
+/*.modal para el pago*/
+.payment-modal{
+    background-color: var(--white-color);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s;
+}
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #7a7878;
+    cursor: pointer;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.modal-close:hover {
+    color: #000000;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

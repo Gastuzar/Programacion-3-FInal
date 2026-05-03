@@ -50,7 +50,9 @@ const crearFilaProducto = (producto: Product): string => {
     return `
         <tr class="table__tr">
             <td class="table__td">${producto.id}</td>
-            <td class="table__td"><img src="${producto.imagen}" alt="${producto.nombre}" class="table__img" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
+            <td class="table__td">
+                <img src="${producto.imagen}" alt="${producto.nombre}" class="table__img-product">
+            </td>
             <td class="table__td"><strong>${producto.nombre}</strong></td>
             <td class="table__td">${producto.descripcion}</td>
             <td class="table__td">$${producto.precio}</td>

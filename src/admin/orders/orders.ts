@@ -1,52 +1,48 @@
 import { getOrders, updatePedido } from "../../utils/localStorage";
-import { logout } from "../../utils/auth";
+import { logout, verificarAdmin } from "../../utils/auth"; // Import unificado
 import type { Pedido } from "../../types/Pedido";
-import { verificarAdmin } from "../../utils/auth";
+import { getUsers } from "../../utils/localStorage";
 
-// Obtener color del estado
-const getEstadoColor = (estado: string): string => {
-    const colores: Record<string, string> = {
-        'Pendiente': '#ffc107',
-        'Procesado': '#17a2b8',
-        'Enviado': '#007bff',
-        'Entregado': '#28a745'
-    };
-    return colores[estado] || '#6c757d';
-};
 
-// Formatear fecha
+// 1. Formatear fecha (Mantenemos la lógica de datos)
 const formatearFecha = (isoString: string): string => {
     const fecha = new Date(isoString);
     return fecha.toLocaleDateString('es-ES', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric'
+        year: 'numeric', month: 'long', day: 'numeric' 
     });
 };
 
-// Crear HTML card de pedido (admin)
+const obtenerNombreCliente = (userId: any): string => {
+    const usuarios = getUsers();
+    
+    const cliente = usuarios.find(u => String(u.id) === String(userId));
+    
+    return cliente ? `${cliente.nombre} ${cliente.apellido}` : "Usuario Desconocido";
+};
+
+// 2. HTML de la Card (SIN ESTILOS INLINE)
 const crearHTMLPedidoAdmin = (pedido: Pedido): string => {
     const fecha = formatearFecha(pedido.fecha);
     const totalProductos = pedido.items.reduce((sum, item) => sum + item.cantidad, 0);
-    const estadoColor = getEstadoColor(pedido.estado);
     
+    // Usamos una clase dinámica: order-badge--Pendiente, order-badge--Enviado, etc.
+    const claseEstado = `order-badge--${pedido.estado.replace(/\s+/g, '')}`;
+
     return `
         <div class="admin-order-card" data-order-id="${pedido.id}">
             <div class="admin-order-card__header">
                 <div>
                     <h3 class="admin-order-card__title">Pedido #${pedido.id}</h3>
-                    <p class="admin-order-card__client">Cliente: Usuario</p>
+                    <p class="admin-order-card__client">Cliente:${obtenerNombreCliente(pedido.userId)}</p>
                     <p class="admin-order-card__date">${fecha}</p>
                 </div>
-                <span class="order-badge" style="background-color: ${estadoColor}">
+                <span class="order-badge ${claseEstado}">
                     ${pedido.estado}
                 </span>
             </div>
-            
             <div class="admin-order-card__body">
                 <p class="admin-order-card__products">${totalProductos} producto(s)</p>
             </div>
-            
             <div class="admin-order-card__footer">
                 <p class="admin-order-card__total">$${pedido.total.toFixed(2)}</p>
                 <button class="button button--small button--primary" data-pedido-id="${pedido.id}">
@@ -65,7 +61,7 @@ const crearHTMLDetalles = (pedido: Pedido): string => {
         <div class="order-details">
             <div class="order-details__section">
                 <h3>Información del Cliente</h3>
-                <p><strong>Cliente:</strong> Usuario</p>
+                <p class="admin-order-card__client"><strong>Cliente:</strong> ${obtenerNombreCliente(pedido.userId)}</p>
                 <p><strong>Fecha:</strong> ${formatearFecha(pedido.fecha)}</p>
                 <p><strong>Teléfono:</strong> ${pedido.telefono || 'N/A'}</p>
                 <p><strong>Email:</strong> N/A</p>
@@ -180,34 +176,30 @@ const configurarBotonesDetalles = (): void => {
     });
 };
 
-// Abrir modal de detalles
+// 3. Lógica del Modal (USANDO CLASES)
 const abrirDetallesPedido = (pedidoId: number): void => {
     const pedido = getOrders().find(p => p.id === pedidoId);
     if (!pedido) return;
-    
+
     const modal = document.getElementById('modal-order-details');
     const content = document.getElementById('order-details-content');
-    
+
     if (modal && content) {
         content.innerHTML = crearHTMLDetalles(pedido);
-        modal.style.display = 'flex';
+        // ACTIVAMOS EL MODAL CON LA CLASE DEL CSS
+        modal.classList.add('modal--active'); 
         
-        // Configurar botón de actualizar estado
-        const btnActualizar = document.getElementById('btn-actualizar-estado');
-        if (btnActualizar) {
-            btnActualizar.addEventListener('click', () => {
-                actualizarEstadoPedido(pedidoId);
-            });
-        }
+        document.getElementById('btn-actualizar-estado')?.addEventListener('click', () => {
+            actualizarEstadoPedido(pedidoId);
+        });
     }
 };
 
 // Cerrar modal
 const cerrarModal = (): void => {
     const modal = document.getElementById('modal-order-details');
-    if (modal) {
-        modal.style.display = 'none';
-    }
+    // DESACTIVAMOS CON CLASE
+    modal?.classList.remove('modal--active');
 };
 
 // Actualizar estado del pedido

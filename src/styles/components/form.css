@@ -1,0 +1,89 @@
+@import '../variables.css';
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form__label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.form__input,
+.form__textarea,
+.form__select {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'Montserrat-Medium', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form__input:focus,
+.form__textarea:focus,
+.form__select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.1);
+}
+
+.form__textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form__select {
+    cursor: pointer;
+    background-color: var(--white-color);
+    color: var(--text-color);
+}
+
+.form__select option {
+    background-color: var(--white-color);
+    color: black;
+}
+
+.form__checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form__checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.form__error {
+    color: var(--error-color);
+    font-size: 0.85em;
+    margin-top: -15px;
+    display: none;
+}
+
+.form__error--visible {
+    display: block;
+}
+
+.payment-summary {
+    background: var(--white-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}

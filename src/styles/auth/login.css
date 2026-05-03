@@ -1,5 +1,9 @@
 @import '../variables.css';
-@import '../base.css';
+
+/*Efecto degrade de naranja oscuro a naranja claro en el fondo*/
+body {
+    background-image: linear-gradient(to right, var(--focus-color), var(--primary-color));    
+}
 
 .login-card {
     margin: 20vh auto;
@@ -62,7 +66,7 @@
 }
 
 .login-card__error-message {
-    color: #e03030;
+    color: var(--error-color);
     font-size: 0.82em;
     text-align: left;
     margin-top: -5px;
@@ -104,4 +108,13 @@
 
 .login-card__link:hover {
     text-decoration: underline;
+}
+
+.login-card__credentials{
+    color: var(--text-color);
+    text-align: center;
+    font-size: 0.9em;
+    text-decoration: none;
+    font-weight: bold;
+    list-style: none;
 }

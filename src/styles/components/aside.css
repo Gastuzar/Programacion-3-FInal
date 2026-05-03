@@ -1,0 +1,59 @@
+@import '../variables.css';
+
+.aside {
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: var(--shadow);
+    flex: 0 0 220px; /* No crece, no se encoge, siempre mide 220px */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 80vh;
+}
+
+.aside__title {
+    margin: 0 0 5px 0;
+    color: var(--primary-color);
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.aside__subtitle {
+    margin: 0 0 15px 0;
+    color: #666;
+    font-size: 0.9em;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.aside__ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aside__li {
+    margin-bottom: 8px;
+}
+
+.aside__li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px 12px;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-size: 0.95em;
+}
+
+.aside__li a:hover {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    padding-left: 20px;
+}
+
+.aside__li a.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}

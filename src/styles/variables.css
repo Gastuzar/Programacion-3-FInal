@@ -1,14 +1,17 @@
 :root {
-    --primary-color: #ff6347;
+    --primary-color: #fd745c;
     --background-color: #f0f0f0;
-    --text-color: #333;
+    --text-color: #4e4b4b;
     --white-color: #fff;
     --border-color: #ddd;
     --focus-color: #ff4500;
     --shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    --disponile: #10c70a;
+    --agotado: #f30000;
+    --error-color: #9e1919;
 }
 
 @font-face {
     font-family: 'Montserrat-Medium';
-    src: url('./assets/Montserrat-Medium.ttf') format('truetype');
+    src: url('../assets/Montserrat-Medium.ttf') format('truetype');
 }

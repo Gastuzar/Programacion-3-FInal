@@ -1,29 +1,8 @@
-/* ==========================================================================
-   LAYOUT PRINCIPAL DE ADMINISTRACIÓN
-   ========================================================================== */
-.admin-layout {
-    display: flex;
-    min-height: calc(100vh - 120px);
-}
-
-.admin-main {
-    flex: 1;
-    padding: 40px;
-    background: #f5f5f5; /* Fondo gris para que las cards blancas resalten */
-}
-
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.admin-title {
-    font-size: 32px;
-    color: #333;
-    margin: 0;
-}
+@import '../variables.css';
+@import '../components/modal.css';
+@import '../components/button.css';
+@import './dashboard.css';
+@import './admin-layout.css';
 
 .admin-filter {
     display: flex;
@@ -32,30 +11,27 @@
 
 .filter-select {
     padding: 10px 15px;
-    border: 1px solid #ddd;
+    border: 1.5px solid var(--border-color);
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
-    background: white;
+    background: var(--white-color);
+    font-family: 'Montserrat-Medium', sans-serif;
 }
 
-/* ==========================================================================
-   GRILLA DE PEDIDOS (DASHBOARD)
-   ========================================================================== */
 .orders-admin-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+    gap: 15px;
 }
 
 .admin-order-card {
-    background: white;
+    background: var(--white-color);
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    cursor: pointer;
-    border-left: 5px solid transparent;
+    border-left: 5px solid #ccc; /* Borde neutro por defecto */
 }
 
 .admin-order-card:hover {
@@ -63,23 +39,38 @@
     transform: translateY(-2px);
 }
 
+/* Colores de borde lateral según estado */
+.admin-order-card--Pendiente { border-left-color: #ffc107; }
+.admin-order-card--Procesado { border-left-color: #17a2b8; }
+.admin-order-card--EnPreparación { border-left-color: #6c757d; }
+.admin-order-card--Enviado { border-left-color: #007bff; }
+.admin-order-card--Entregado { border-left-color: #28a745; }
+
 .admin-order-card__header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start; /* Alinea el ID y el Badge arriba */
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
 }
 
 .admin-order-card__title {
-    font-size: 18px;
+    font-size: 1.2em;
     margin: 0 0 5px 0;
-    color: #333;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.admin-order-card__client {
+    font-size: 0.9em;
+    color: #666;
+    margin: 3px 0;
 }
 
 .admin-order-card__date {
-    font-size: 13px;
-    color: #666;
+    font-size: 0.85em;
+    color: #999;
     margin: 3px 0;
 }
 
@@ -89,7 +80,7 @@
 
 .admin-order-card__products {
     color: #666;
-    font-size: 14px;
+    font-size: 0.95em;
     line-height: 1.4;
 }
 
@@ -102,77 +93,46 @@
 }
 
 .admin-order-card__total {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ff6347; /* Tomate/Naranja */
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
     margin: 0;
 }
 
-/* ==========================================================================
-   SISTEMA DE MODAL Y DETALLES (ESTILO TARJETAS)
-   ========================================================================== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content--large {
-    background-color: #f4f4f4; /* Fondo gris para separar las cards blancas */
-    width: 90%;
-    max-width: 700px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 30px;
-    border-radius: 15px;
-    position: relative;
-}
-
-.modal-title {
-    font-size: 24px;
-    margin: 0 0 25px 0;
-    color: #333;
-    text-align: center;
-}
 
 .order-details {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espacio entre bloques */
+    gap: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: var(--white-color);
 }
 
-/* Bloques de información estilizados como tarjetas blancas */
 .order-details__section,
 .order-details__totals,
 .order-details__actions {
-    background: white;
+    background: var(--white-color);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .order-details__section h3 {
-    font-size: 17px;
+    font-size: 1.1em;
     margin: 0 0 12px 0;
-    color: #333;
+    color: var(--text-color);
     border-bottom: 2px solid #f9f9f9;
     padding-bottom: 8px;
+    font-weight: 700;
 }
 
 .order-details__section p {
     margin: 8px 0;
     color: #555;
-    font-size: 14px;
+    font-size: 0.95em;
 }
 
-/* Lista de productos dentro del detalle */
 .order-products-list {
     display: flex;
     flex-direction: column;
@@ -183,7 +143,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 12px;
     background: #fafafa;
     border-radius: 8px;
     border: 1px solid #f0f0f0;
@@ -194,99 +154,105 @@
     flex-direction: column;
 }
 
+.order-product-item__info strong {
+    color: var(--text-color);
+    font-size: 1em;
+}
+
 .order-product-item__qty {
-    font-size: 12px;
+    font-size: 0.85em;
     color: #888;
     margin-top: 2px;
 }
 
 .order-product-item__total {
-    font-weight: bold;
-    color: #ff6347;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
 }
 
-/* Totales dentro del modal */
 .total-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     color: #666;
-    font-size: 15px;
+    font-size: 1em;
 }
 
 .total-row--final {
-    font-size: 20px;
-    font-weight: 800;
-    color: #333;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--text-color);
     margin-top: 10px;
     padding-top: 10px;
     border-top: 2px solid #eee;
 }
 
-/* Acciones y Estados */
 .order-details__actions {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+.order-details__actions label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    display: block;
+}
+
 .status-select {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1.5px solid var(--border-color);
     border-radius: 8px;
     font-size: 14px;
-    background: #fff;
-}
-
-.button--success {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
+    background: var(--white-color);
+    font-family: 'Montserrat-Medium', sans-serif;
     cursor: pointer;
+    width: 100%;
 }
 
-/* Badges de Estado (Colores dinámicos) */
+.status-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
 .order-badge {
     padding: 6px 12px;
     border-radius: 20px;
     color: white;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 0.75em;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
-.status--pendiente { background-color: #ffc107; color: #000; }
-.status--procesado { background-color: #17a2b8; }
-.status--enviado   { background-color: #007bff; }
-.status--entregado { background-color: #28a745; }
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--white-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-/* ==========================================================================
-RESPONSIVE
-   ========================================================================== */
+.empty-state h3 {
+    font-size: 1.8em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #666;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .admin-layout {
-        flex-direction: column;
-    }
-    
-    .admin-main {
-        padding: 20px;
-    }
-    
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
     .orders-admin-container {
         grid-template-columns: 1fr;
     }
-
-    .modal-content--large {
-        width: 95%;
-        padding: 15px;
+    
+    .admin-order-card__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
 }

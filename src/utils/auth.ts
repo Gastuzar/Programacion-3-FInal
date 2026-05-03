@@ -38,6 +38,23 @@ export const verificarAdmin = (): void => {
     }
 };
 
+//Para las pages client
+const mostrarPanelAdmin = (rol: string): void => {
+    const adminPanelLink = document.getElementById("adminPanel");
+    if (adminPanelLink) {
+        if (rol === "admin") {
+            adminPanelLink.style.display = "block";
+        } else {
+            adminPanelLink.style.display = "none";
+        }
+    }
+};
+export const verificarClient = (): void => {
+    const userData = checkAuth("client");
+    if (!userData) return;
+    mostrarPanelAdmin(userData.rol);
+}
+
 // Función para cerrar sesión
 export const logout = () => {
     localStorage.removeItem("userData");
