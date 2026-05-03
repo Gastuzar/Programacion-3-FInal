@@ -1,4 +1,4 @@
-import { getOrders } from "../../utils/localStorage";
+import { getOrders, getSession } from "../../utils/localStorage";
 import { logout, verificarClient } from "../../utils/auth";
 import type { Pedido } from "../../types/Pedido";
 
@@ -67,8 +67,7 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
     let pedidos = getOrders();
 
     // 1. Recuperar el usuario actual desde el localStorage
-    const sessionData = localStorage.getItem("userData");
-    const currentUser = sessionData ? JSON.parse(sessionData) : null;
+    const currentUser = getSession();
 
     if (!currentUser) {
         console.error("No se encontró una sesión activa.");
@@ -76,13 +75,14 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
     }
     
     // Ordenar por fecha (más reciente primero)
+    
     pedidos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
     
     // Filtrar por estado
     if (filtro !== 'Todos') {
         pedidos = pedidos.filter(p => p.estado === filtro);
     }
-    const pedidosUsuario = pedidos.filter(pedido => pedido.userId === currentUser.id);
+    pedidos = pedidos.filter(pedido => pedido.userId === currentUser.id);
 
     if (pedidos.length === 0) {
         container.innerHTML = `
@@ -95,8 +95,8 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
         `;
         return;
     }
-    if (pedidosUsuario.length > 0) {
-        container.innerHTML = pedidosUsuario.map(pedido => crearHTMLPedido(pedido)).join('');
+    if (pedidos.length > 0) {
+        container.innerHTML = pedidos.map(pedido => crearHTMLPedido(pedido)).join('');
     }
     
 };

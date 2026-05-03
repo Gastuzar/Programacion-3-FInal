@@ -5,7 +5,8 @@ import {
     saveCart,
     addPedido,
     getProducts,
-    saveProducts
+    saveProducts,
+    getSession
 } from "../../utils/localStorage";
 import { navigate } from "../../utils/navigate";
 import { logout, verificarClient } from "../../utils/auth";
@@ -288,8 +289,7 @@ const validarYConfirmarPedido = (cart: CartItem[], subtotal: number): void => {
     const notas = (document.getElementById("input-notas") as HTMLTextAreaElement)?.value.trim();
 
     // Validar sesión
-    const sessionData = localStorage.getItem("userData");
-    const currentUser = sessionData ? JSON.parse(sessionData) : null;
+    const currentUser = getSession();
     if (!currentUser) {
     alert("Debes iniciar sesión para finalizar la compra");
     return;
@@ -409,7 +409,7 @@ verificarClient();
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = JSON.parse(localStorage.getItem("userData") || "null");
+    const currentUser = getSession();
     if (!currentUser) {
         logout();
         return;

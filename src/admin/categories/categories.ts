@@ -143,10 +143,6 @@ const guardarCategoria = (e: Event): void => {
     cerrarModal();
 };
 
-// Editar categoría
-const editarCategoria = (id: number): void => {
-    abrirModal(id);
-};
 
 // Eliminar categoría
 const eliminarCategoria = (id: number): void => {
@@ -170,7 +166,7 @@ const configurarBotonesAcciones = (): void => {
             const accion = boton.dataset.action;
             
             if (accion === 'editar') {
-                editarCategoria(id);
+                abrirModal(id);
             } else if (accion === 'eliminar') {
                 eliminarCategoria(id);
             }

@@ -1,6 +1,7 @@
 import type { IUser } from "../types/IUser";
 import { navigate } from "../utils/navigate";
 import { userExample, userExample2, userExample3 } from "../types/IUser";
+import { findUser, setSession } from "../utils/localStorage";
 
 // Crear usuarios de ejemplo si no existen
 const initAuth = () => {
@@ -28,22 +29,21 @@ form.addEventListener("submit", (e: Event) => {
   }
 
   // Obtener usuarios del storage
-  const users: IUser[] = JSON.parse(localStorage.getItem("users") || "[]");
 
-  const usuario = users.find(u => u.email === email && u.password === password);
-
+  const usuario = findUser(email, password);
   if (!usuario) {
-    mostrarError("Email o contraseña incorrectos.");
-    return;
+      mostrarError("Email o contraseña incorrectos.");
+      return;
   }
+  setSession(usuario);
   // Guardar sesión
   localStorage.setItem("userData", JSON.stringify(usuario));
 
   // Redirigir según rol
   if (usuario.rol === "admin" ) {
-    navigate("/src/pages/admin/admin.html");
+      navigate("/src/pages/admin/admin.html");
   } else {
-    navigate("/src/pages/client/home.html");
+      navigate("/src/pages/client/home.html");
   }
 });
 

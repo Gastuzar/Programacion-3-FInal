@@ -1,7 +1,6 @@
-import { getOrders, updatePedido } from "../../utils/localStorage";
-import { logout, verificarAdmin } from "../../utils/auth"; // Import unificado
+import { getOrders, updatePedido, getUsers } from "../../utils/localStorage";
+import { logout, verificarAdmin } from "../../utils/auth";
 import type { Pedido } from "../../types/Pedido";
-import { getUsers } from "../../utils/localStorage";
 
 
 // 1. Formatear fecha (Mantenemos la lógica de datos)
