@@ -1,13 +1,13 @@
-🍔 #Food Store — Sistema de Gestión de Pedidos de Comida
+🍔 Food Store — Sistema de Gestión de Pedidos de Comida
 Aplicación web para la gestión de un negocio de comidas. Permite a clientes navegar el catálogo, agregar productos al carrito y realizar pedidos; y a administradores gestionar categorías, productos y el estado de los pedidos.
 
-📋 #Requisitos previos
+📋 Requisitos previos
 HerramientaVersión mínimaNode.js18.x o superiornpm9.x o superior
 Verificá tus versiones con:
 bash node -v
 pnpm -v
 
-🚀 #Instalación y ejecución (Frontend)
+🚀 Instalación y ejecución (Frontend)
 1. Clonar el repositorio
 bash git clone https://github.com/tu-usuario/final-prog3.git
 cd final-prog3
@@ -21,16 +21,18 @@ bash pnpm run build
 5. Previsualizar la build de producción
 bash pnpm run preview
 
-👤 #Usuarios de prueba (precargados automáticamente)
+👤 Usuarios de prueba (precargados automáticamente)
 Al iniciar sesión por primera vez, el sistema crea automáticamente los siguientes usuarios:
+
 Rol: Admin / Admin / Cliente
+
 Email: admin@admin.com / usuario@usuario.com / cliente@cliente.com
+
 Contraseña:  Admin123 / Usuario123 / Client123
 
 ⚠️ Estos usuarios se inicializan en localStorage la primera vez que se accede al login. Son solo para fines educativos/demostrativos.
 
-
-🗂️ #Estructura del proyecto
+🗂️ Estructura del proyecto
 final-prog3/
 ├── index.html                  # Redirección a login
 ├── package.json
@@ -64,7 +66,7 @@ final-prog3/
             ├── productos.html
             └── orders.html
 
-🔐 #Flujo de autenticación
+🔐 Flujo de autenticación
 
 El usuario ingresa credenciales en /src/pages/auth/login/login.html
 El frontend valida contra los usuarios en localStorage
@@ -78,11 +80,11 @@ Cada página protegida verifica localStorage al cargar
 El logout limpia userData y redirige al login
 
 
-📦 #Scripts disponibles
+📦 Scripts disponibles
 Comando: pnpm run dev / pnpm run build / pnpm run preview
 Descripción: Inicia el servidor de desarrollo con hot-reload / Compila TypeScript y genera la build de producción en /dist / Sirve la build de producción localmente
 
-🛠️ #Tecnologías utilizadas
+🛠️ Tecnologías utilizadas
 
 TypeScript — Tipado estático
 Vite — Bundler y servidor de desarrollo
@@ -90,7 +92,7 @@ HTML5 / CSS3 — Estructura y estilos
 localStorage — Persistencia de datos en el cliente (fines educativos)
 
 
-⚠️ #Consideraciones importantes
+⚠️ Consideraciones importantes
 
 Este proyecto no implementa seguridad real. Las contraseñas se almacenan en texto plano en localStorage, la validación de roles es solo frontend, y localStorage es fácilmente modificable.
 El sistema es solo para fines educativos.
