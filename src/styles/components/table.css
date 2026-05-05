@@ -34,7 +34,7 @@
 }
 
 .table__tr:hover {
-    background-color: var(--background-color);
+    background-color: var(--primary-color);
 }
 
 .table__td {

@@ -95,18 +95,18 @@
 }
 
 .main__section {
-    display: grid; /* <--- Esto es lo que faltaba */
+    display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px; /* Un poco más de espacio entre productos */
+    gap: 25px;
     padding: 20px ;
     border-radius: 7px;
     
 }
 .client-container {
     display: flex;
-    margin: 0 auto; /* Centra el contenido */
+    margin: 0 auto;
     align-items: flex-start;
-    flex: 1; /* Esto obliga al panel a ocupar TODO el espacio restante a la derecha */
+    flex: 1; 
     background-color: var(--white-color);
     padding: 20px;
     border-right: 1px solid var(--border-color);
@@ -116,13 +116,13 @@
 }
 .article {
     background-color: var(--white-color);
-    border-radius: 12px; /* Un poco más redondeado para un look moderno */
+    border-radius: 12px; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Asegura que la imagen no se salga de las esquinas redondeadas */
-    height: 100%; /* Para que todas las tarjetas midan lo mismo en la grilla */
+    overflow: hidden; 
+    height: 100%; 
 }
 
 .article:hover {
@@ -142,7 +142,7 @@
 .article__description, 
 .article__price, 
 .article__stock {
-    padding: 0 20px; /* Margen interno a los costados */
+    padding: 0 20px; 
 }
 
 .article__title {
@@ -157,7 +157,7 @@
     font-size: 0.9rem;
     color: var(--text-color);
     line-height: 1.4;
-    flex-grow: 1; /* Empuja el precio y stock hacia abajo */
+    flex-grow: 1; 
 }
 
 .article__price {
@@ -172,14 +172,13 @@
 }
 
 .article__stock {
-    margin-bottom: 20px; /* Espacio al final de la tarjeta */
+    margin-bottom: 20px; 
     font-size: 0.85rem;
     font-weight: 600;
-    /* Estilo tipo badge para el estado */
-    color: var(--disponible); /* Verde para disponible */
+    color: var(--disponible); 
 }
 
-/* Opcional: si el producto está agotado */
+/*producto está agotado */
 .article__stock:contains('Agotado') {
     color: var(--agotado);
 }

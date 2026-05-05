@@ -3,12 +3,13 @@
     --background-color: #f0f0f0;
     --text-color: #4e4b4b;
     --white-color: #fff;
-    --border-color: #ddd;
+    --border-color: #bbb6b6;
     --focus-color: #ff4500;
     --shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     --disponible: #1e941a;
     --agotado: #9e1919;
     --error-color: #ff0000;
+    --body-color: #d6d5d5;
 }
 
 @font-face {

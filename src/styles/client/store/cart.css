@@ -6,10 +6,10 @@
 @import '../../components/form.css';
 
 .cart-container {
-    width: 100%;       /* Ocupa el total de la pantalla */
-    max-width: 100%;   /* Eliminamos el límite de 1200px */
-    margin: 40px 0;    /* Quitamos el 'auto' para que no se centre */
-    padding: 0 30px;   /* Mantenemos un aire a los costados */
+    width: 100%;       
+    max-width: 100%;   
+    margin: 40px 0;   
+    padding: 0 30px;   
     box-sizing: border-box;
 }
 
@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
 }
 
 .cart-item {
@@ -39,7 +40,8 @@
     padding: 20px;
     background: var(--white-color);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     transition: all 0.3s;
 }
 
@@ -191,7 +193,7 @@
 
 .cart-summary .button {
     width: 100%;
-    margin-top: 15px; /* Espacio entre los dos botones */
+    margin-top: 15px;
     padding: 15px;
     font-size: 18px;
     

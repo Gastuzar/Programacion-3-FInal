@@ -8,20 +8,20 @@
 
 
 .main-dashboard {
-    flex: 1 !important; /* Obliga a ocupar todo el ancho restante */
+    flex: 1 !important; 
     display: flex;
     flex-direction: column;
     padding: 30px;
     background-color: var(--white-color);
-    min-width: 0; /* Evita que el contenido interno desborde el flex */
+    min-width: 0; 
 }
 
 .table {
-    width: 100% !important; /* La tabla debe ignorar el ancho de sus celdas y estirarse */
+    width: 100% !important;
     border-collapse: collapse;
 }
 
-/* Estilos específicos para categorías si los necesitas */
+/* Estilos específicos para categorías */
 .category-description {
     max-width: 400px;
     white-space: nowrap;

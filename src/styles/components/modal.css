@@ -37,7 +37,7 @@
     top: 10px;
     font-size: 28px;
     font-weight: bold;
-    color: #aaa;
+    color: var(--text-color);
     cursor: pointer;
     transition: color 0.3s;
     background: none;
@@ -49,7 +49,7 @@
 }
 
 .modal__close:hover {
-    color: var(--text-color);
+    color: var(--error-color);
 }
 
 .modal__title {
@@ -59,7 +59,7 @@
 }
 
 .modal-overlay {
-    display: none; /* Oculto por defecto */
+    display: none; 
     position: fixed;
     inset: 0;
     background: rgba(0, 3, 0, 0.5);
@@ -69,18 +69,18 @@
 }
 
 .modal--show {
-    display: flex; /* Se muestra cuando tiene la clase */
+    display: flex; 
 }
 .order-badge {
     padding: 6px 12px;
     border-radius: 20px;
     color: var(--white-color);
-    font-size: 0.75rem; /* Tamaño fijo para que no salte */
+    font-size: 0.75rem; 
     font-weight: 700;
     text-transform: uppercase;
     display: inline-block;
     white-space: nowrap;
-    height: fit-content; /* Evita que crezca como en tu imagen */
+    height: fit-content; 
 }
 
 .order-badge--Pendiente { background-color: #ffc107; color: #000; }

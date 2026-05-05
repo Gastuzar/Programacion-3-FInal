@@ -40,7 +40,6 @@ function renderizarDatosProducto(producto: Producto, categorias: Categoria[]) {
     const statusEl = document.getElementById("detail-status");
     if (statusEl) {
         const enStock = (producto.stock || 0) > 0;
-        // Solo manejamos la CLASE, no el estilo
         const claseEstado = enStock ? "status-badge--available" : "status-badge--out";
         const texto = enStock ? "Disponible" : "Agotado";
         
@@ -118,7 +117,6 @@ const configurarBotonCart = (producto: Producto): void => {
             // Resetear cantidad
             inputQty.value = "1";
             
-            // Opcional: Mostrar notificación
             mostrarNotificacion(`${producto.nombre} agregado al carrito`);
         }
     });
@@ -127,7 +125,7 @@ const configurarBotonCart = (producto: Producto): void => {
 // Mostrar notificación temporal
 const mostrarNotificacion = (mensaje: string): void => {
     const notification = document.createElement('div');
-    notification.className = 'notification'; // Usamos la clase CSS
+    notification.className = 'notification'; 
     notification.textContent = mensaje;
     
     document.body.appendChild(notification);

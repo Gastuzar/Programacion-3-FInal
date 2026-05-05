@@ -262,7 +262,7 @@ const procederAlPago = (): void => {
     const modalOverlay = document.getElementById("modal-pago");
     
     if (modalOverlay) {
-    modalOverlay.classList.add("modal--active"); // Esta es la clase que dispara el display: flex
+    modalOverlay.classList.add("modal--active"); 
     }
 
     btnCerrarModal?.addEventListener("click", cerrarModal);

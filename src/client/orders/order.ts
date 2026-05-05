@@ -74,7 +74,7 @@ const renderizarPedidos = (filtro: string = 'Todos'): void => {
         return;
     }
     
-    // Ordenar por fecha (más reciente primero)
+    // Ordenar por fecha
     
     pedidos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
     

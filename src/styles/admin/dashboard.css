@@ -5,7 +5,7 @@
 @import '../components/card.css';
 
 .admin--container {
-    display: flex !important; /* Forzamos el comportamiento flex */
+    display: flex !important; /* Forzar el comportamiento flex */
     flex-direction: row !important; 
     align-items: stretch;
     width: 100%;
@@ -15,15 +15,15 @@
 }
 .admin--container .aside {
     gap: 10px;
-    flex: 0 0 260px; /* No crece, no se encoge, mide 260px */
-    width: 260px;    /* Refuerzo para navegadores antiguos */
+    flex: 0 0 260px; 
+    width: 260px;    
     min-width: 260px;
     background-color: var(--white-color);
     border-right: 1px solid var(--border-color);
 }
 
 .main-dashboard {
-    flex: 1; /* Esto obliga al panel a ocupar TODO el espacio restante a la derecha */
+    flex: 1; 
     background-color: var(--white-color);
     padding: 35px;
     border-right: 1px solid var(--border-color);

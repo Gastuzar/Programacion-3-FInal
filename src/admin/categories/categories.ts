@@ -104,7 +104,7 @@ const cerrarModal = (): void => {
     formulario?.reset();
 };
 
-// Guardar categoría (crear o editar)
+// Guardar categoría
 const guardarCategoria = (e: Event): void => {
     e.preventDefault();
     
@@ -156,7 +156,7 @@ const eliminarCategoria = (id: number): void => {
     }
 };
 
-// Configurar eventos de los botones de acciones (editar/eliminar)
+// Configurar eventos de los botones de acciones 
 const configurarBotonesAcciones = (): void => {
     const botonesAccion = document.querySelectorAll<HTMLButtonElement>('[data-action]');
     
@@ -202,11 +202,11 @@ const configurarEventos = (): void => {
 
 // Inicializar aplicación
 const init = (): void => {
-    initializeCategories(); // Inicializar categorías por defecto si no hay ninguna
+    initializeCategories(); 
     inicializarDOM();
     cargarCategorias();
     configurarEventos();
-    verificarAdmin(); // Verificar que el usuario es admin
+    verificarAdmin(); 
 };
 
 // Ejecutar cuando el DOM esté listo

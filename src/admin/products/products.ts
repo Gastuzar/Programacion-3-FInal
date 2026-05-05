@@ -182,7 +182,7 @@ const configurarEventos = (): void => {
 
 // Ejecución inicial
 document.addEventListener('DOMContentLoaded', () => {
-    initializeCategories(); // Precarga categorías si no existen
+    initializeCategories(); 
     inicializarDOM();
     configurarEventos();
     cargarProductos();

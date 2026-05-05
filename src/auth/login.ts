@@ -1,19 +1,11 @@
-import type { IUser } from "../types/IUser";
 import { navigate } from "../utils/navigate";
 import { userExample, userExample2, userExample3 } from "../types/IUser";
 import { findUser, setSession } from "../utils/localStorage";
 
-// Crear usuarios de ejemplo si no existen
-const initAuth = () => {
-  // Solo crea los usuarios si el storage está vacío
-  if (!localStorage.getItem("users")) {
-    localStorage.setItem("users", JSON.stringify([userExample, userExample2, userExample3]));
-    console.log("Usuarios de prueba creados en LocalStorage");
-  }
-};
 
 const form     = document.getElementById("login-form")      as HTMLFormElement;
 const errorMsg = document.getElementById("error-msg") as HTMLParagraphElement;
+const users = [userExample, userExample2, userExample3]
 
 form.addEventListener("submit", (e: Event) => {
   e.preventDefault();
@@ -21,7 +13,19 @@ form.addEventListener("submit", (e: Event) => {
   const email    = (document.getElementById("email")    as HTMLInputElement).value.trim();
   const password = (document.getElementById("password") as HTMLInputElement).value.trim();
 
-  initAuth();
+  const userFound = users.find(u => u.email === email && u.password === password);
+
+  if (userFound) {
+      // 2. Establecer la sesión con el usuario ENCONTRADO únicamente
+      setSession(userFound); 
+      localStorage.setItem("userData", JSON.stringify(userFound));
+      if (userFound.rol === "admin") {
+          navigate("/src/pages/admin/admin.html");
+      } else {
+          navigate("/src/pages/client/home.html");
+      }
+    }
+
   // Validación básica
   if (!email || !password) {
     mostrarError("Completá todos los campos.");

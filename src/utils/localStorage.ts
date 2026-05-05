@@ -80,7 +80,6 @@ export function saveProducts(products: Producto[]): void {
 
 export function addProduct(product: Producto): void {
     const products = getProducts();
-    // Opcional: Validar que el ID no se repita
     if (products.some(p => p.id === product.id)) {
         console.warn("El producto ya existe");
         return;

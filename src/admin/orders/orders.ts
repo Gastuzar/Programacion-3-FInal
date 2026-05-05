@@ -3,7 +3,7 @@ import { logout, verificarAdmin } from "../../utils/auth";
 import type { Pedido } from "../../types/Pedido";
 
 
-// 1. Formatear fecha (Mantenemos la lógica de datos)
+// 1. Formatear fecha 
 const formatearFecha = (isoString: string): string => {
     const fecha = new Date(isoString);
     return fecha.toLocaleDateString('es-ES', { 
@@ -19,7 +19,7 @@ const obtenerNombreCliente = (userId: any): string => {
     return cliente ? `${cliente.nombre} ${cliente.apellido}` : "Usuario Desconocido";
 };
 
-// 2. HTML de la Card (SIN ESTILOS INLINE)
+// 2. HTML de la Card 
 const crearHTMLPedidoAdmin = (pedido: Pedido): string => {
     const fecha = formatearFecha(pedido.fecha);
     const totalProductos = pedido.items.reduce((sum, item) => sum + item.cantidad, 0);

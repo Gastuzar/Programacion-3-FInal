@@ -28,13 +28,13 @@ const actualizarEstadisticas = () => {
     
     // 3. Simular Pedidos (Si aún no tienes el storage de pedidos)
     const countOrdersEl = document.getElementById('count-orders');
-    if (countOrdersEl) countOrdersEl.textContent = "0"; // Aquí conectarás tus pedidos después
+    if (countOrdersEl) countOrdersEl.textContent = "0"; 
 };
+
 //FUNCION PARA MODIFICAR  EL RESUMEN DE ESTADISTICAS, SE DEBE LLAMAR CADA VEZ QUE SE REALICE UNA MODIFICACION EN LOS PRODUCTOS O CATEGORIAS
 const actualizarResumen = () => {
     const pedidos = getOrders();
-    // Simular actualización de resumen (reemplazar con lógica real)
-    if (totalRevenueEl) totalRevenueEl.textContent = pedidos.reduce(((total, p) => total + (p.estado === 'Entregado' ? p.total : 0)), 0).toString(); //revisar
+    if (totalRevenueEl) totalRevenueEl.textContent = pedidos.reduce(((total, p) => total + (p.estado === 'Entregado' ? p.total : 0)), 0).toString(); 
     if (countPendingEl) countPendingEl.textContent = pedidos.filter(p => p.estado === 'Pendiente').length.toString();
     if (countPreparingEl) countPreparingEl.textContent = pedidos.filter(p => p.estado === 'En Preparación').length.toString();
     if (countCompletedEl) countCompletedEl.textContent = pedidos.filter(p => p.estado === 'Entregado').length.toString();

@@ -4,41 +4,25 @@ import { logout, verificarClient } from "../../utils/auth";
 import { getProducts, getCategories } from "../../utils/localStorage";
 import { navigate } from "../../utils/navigate";
 
-// ============================================================================
-// UTILIDADES DE ESTADO - Leer el estado desde el DOM
-// ============================================================================
-
-/**
- * Obtiene la categoría activa del DOM en lugar de una variable global
- */
+/*Obtiene la categoría activa del DOM en lugar de una variable global */
 const getCategoriaActiva = (): string | number => {
     const enlaceActivo = document.querySelector<HTMLAnchorElement>('[data-categoria-id].active');
     return enlaceActivo?.dataset.categoriaId || 'all';
 };
 
-/**
- * Obtiene el texto de búsqueda actual del input
- */
+/*Obtiene el texto de búsqueda actual del input*/
 const getTextoBusqueda = (): string => {
     const input = document.getElementById('buscarProductos') as HTMLInputElement;
     return input?.value.toLowerCase().trim() || '';
 };
 
-/**
- * Obtiene el criterio de ordenamiento actual del select
- */
+/** Obtiene el criterio de ordenamiento actual del select*/
 const getCriterioOrden = (): string => {
     const select = document.getElementById('btn-ordenar') as HTMLSelectElement;
     return select?.value || 'default';
 };
 
-// ============================================================================
-// FUNCIONES PURAS - No dependen de estado global
-// ============================================================================
-
-/**
- * Filtra productos según categoría, búsqueda y ordenamiento
- */
+/** Filtra productos según categoría, búsqueda y ordenamiento*/
 const obtenerProductosFiltrados = (): Producto[] => {
     const todosLosProductos = getProducts();
     const categoriaActiva = getCategoriaActiva();
@@ -64,9 +48,7 @@ const obtenerProductosFiltrados = (): Producto[] => {
     return productosOrdenados;
 };
 
-/**
- * Ordena un array de productos según el criterio
- */
+/** Ordena un array de productos según el criterio*/
 const ordenarProductos = (productos: Producto[], criterio: string): Producto[] => {
     const copia = [...productos];
     
@@ -84,9 +66,6 @@ const ordenarProductos = (productos: Producto[], criterio: string): Producto[] =
     }
 };
 
-// ============================================================================
-// RENDERIZADO - Templates HTML
-// ============================================================================
 
 const crearHTMLCategorias = (categoria: Categoria): string => {
     return `<li class="aside__li">
@@ -104,9 +83,9 @@ const crearHTMLProducto = (producto: Producto): string => {
     return `
         <article class="product-card" data-producto-id="${producto.id}">
             <img src="${producto.imagen}" 
-                 alt="${producto.nombre}" 
-                 class="product-card__image"
-                 onerror="this.src='../../assets/images/placeholder.jpg'">
+                alt="${producto.nombre}" 
+                class="product-card__image"
+                onerror="this.src='../../assets/images/placeholder.jpg'">
             <h3 class="product-card__title">${producto.nombre}</h3>
             <p class="product-card__description">${producto.descripcion}</p>
             <div class="product-card__footer">
@@ -118,10 +97,6 @@ const crearHTMLProducto = (producto: Producto): string => {
         </article>
     `;
 };
-
-// ============================================================================
-// RENDERIZADO EN EL DOM
-// ============================================================================
 
 const renderizarProductos = (): void => {
     const contenedor = document.getElementById("contenedor-productos");
@@ -167,7 +142,6 @@ const renderizarCategorias = (): void => {
         return;
     }
 
-    // Opción "Todas" + Categorías
     const htmlTodas = `
         <li class="aside__li">
             <a href="#" data-categoria-id="all" class="categoria-link active">Todas</a>
@@ -192,10 +166,6 @@ const inicializarSelectOrden = (): void => {
     `;
 };
 
-// ============================================================================
-// EVENTOS
-// ============================================================================
-
 const configurarClickProductos = (): void => {
     document.querySelectorAll<HTMLElement>('.product-card').forEach(card => {
         card.addEventListener('click', () => {
@@ -215,11 +185,9 @@ const configurarClickCategorias = (): void => {
         enlace.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Actualizar clases activas en el DOM (esto es nuestro "estado")
             enlaces.forEach(link => link.classList.remove('active'));
             enlace.classList.add('active');
             
-            // Re-renderizar con el nuevo estado del DOM
             renderizarProductos();
         });
     });
@@ -235,7 +203,7 @@ const configurarBusqueda = (): void => {
         renderizarProductos();
     });
     
-    // Búsqueda en tiempo real (opcional)
+    // Búsqueda en tiempo real
     input?.addEventListener('input', debounce(() => {
         renderizarProductos();
     }, 300));
@@ -249,13 +217,7 @@ const configurarOrdenamiento = (): void => {
     });
 };
 
-// ============================================================================
-// UTILIDADES
-// ============================================================================
-
-/**
- * Debounce para optimizar la búsqueda en tiempo real
- */
+/* Debounce para optimizar la búsqueda en tiempo real*/
 function debounce<T extends (...args: any[]) => void>(
     func: T,
     wait: number
@@ -267,10 +229,6 @@ function debounce<T extends (...args: any[]) => void>(
         timeout = setTimeout(() => func.apply(this, args), wait);
     };
 }
-
-// ============================================================================
-// INICIALIZACIÓN
-// ============================================================================
 
 const inicializar = (): void => {
     // 1. Verificar autenticación

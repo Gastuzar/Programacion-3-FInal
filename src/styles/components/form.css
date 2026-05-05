@@ -45,6 +45,7 @@
 .form__textarea {
     resize: vertical;
     min-height: 100px;
+    
 }
 
 .form__select {
