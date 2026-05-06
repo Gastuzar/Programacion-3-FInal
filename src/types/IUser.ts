@@ -31,14 +31,3 @@ export const userExample2: IUser = {
     password: "Client123",
     rol: "client"
 }
-
-export const userExample3: IUser = {
-    id: 3333,
-    nombre: "Gaston",
-    apellido: "Zarate",
-    email: "usuario@usuario.com",
-    loggedIn: null,
-    telefono: "3584567891",
-    password: "Usuario123",
-    rol: "admin"
-}

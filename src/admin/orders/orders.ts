@@ -175,7 +175,7 @@ const configurarBotonesDetalles = (): void => {
     });
 };
 
-// 3. Lógica del Modal (USANDO CLASES)
+// 3. Lógica del Modal
 const abrirDetallesPedido = (pedidoId: number): void => {
     const pedido = getOrders().find(p => p.id === pedidoId);
     if (!pedido) return;

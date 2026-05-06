@@ -98,6 +98,7 @@ const crearHTMLProducto = (producto: Producto): string => {
     `;
 };
 
+// Renderizaciones
 const renderizarProductos = (): void => {
     const contenedor = document.getElementById("contenedor-productos");
     if (!contenedor) return;
@@ -152,7 +153,7 @@ const renderizarCategorias = (): void => {
     
     configurarClickCategorias();
 };
-
+// Configuraciones
 const inicializarSelectOrden = (): void => {
     const selectOrden = document.getElementById('btn-ordenar') as HTMLSelectElement;
     if (!selectOrden) return;
@@ -217,7 +218,7 @@ const configurarOrdenamiento = (): void => {
     });
 };
 
-/* Debounce para optimizar la búsqueda en tiempo real*/
+// Debounce para optimizar la búsqueda en tiempo real
 function debounce<T extends (...args: any[]) => void>(
     func: T,
     wait: number

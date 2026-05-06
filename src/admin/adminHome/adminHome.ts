@@ -39,6 +39,7 @@ const actualizarResumen = () => {
     if (countPreparingEl) countPreparingEl.textContent = pedidos.filter(p => p.estado === 'En Preparación').length.toString();
     if (countCompletedEl) countCompletedEl.textContent = pedidos.filter(p => p.estado === 'Entregado').length.toString();
 };
+// Eventos
 const setupEventListeners = () => {
     const buttonLogout = document.getElementById("logoutButton");
     buttonLogout?.addEventListener("click", (e) => {

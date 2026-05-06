@@ -3,6 +3,7 @@ import { logout, verificarClient } from "../../utils/auth";
 import type { Pedido } from "../../types/Pedido";
 
 // Formatear fecha
+
 const formatearFecha = (isoString: string): string => {
     const fecha = new Date(isoString);
     const opciones: Intl.DateTimeFormatOptions = { 
@@ -14,7 +15,6 @@ const formatearFecha = (isoString: string): string => {
     };
     return fecha.toLocaleDateString('es-ES', opciones);
 };
-
 // Crear HTML de un pedido
 const crearHTMLPedido = (pedido: Pedido): string => {
     const fecha = formatearFecha(pedido.fecha);

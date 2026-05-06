@@ -1,11 +1,11 @@
 import { navigate } from "../utils/navigate";
-import { userExample, userExample2, userExample3 } from "../types/IUser";
+import { userExample, userExample2 } from "../types/IUser";
 import { findUser, setSession } from "../utils/localStorage";
 
 
 const form     = document.getElementById("login-form")      as HTMLFormElement;
 const errorMsg = document.getElementById("error-msg") as HTMLParagraphElement;
-const users = [userExample, userExample2, userExample3]
+const users = [userExample, userExample2];  
 
 form.addEventListener("submit", (e: Event) => {
   e.preventDefault();

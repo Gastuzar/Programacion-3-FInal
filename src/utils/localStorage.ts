@@ -103,7 +103,7 @@ export function deleteProduct(id: number): void {
     const filteredProducts = products.filter(p => p.id !== id);
     saveProducts(filteredProducts);
 }
-
+// Función para Obtener el siguiente ID disponible 
 export function getNextProductId(): number {
     const products = getProducts();
     if (products.length === 0) return 1;
@@ -160,7 +160,7 @@ export function deleteCategory(id: number): void {
     saveCategories(filteredCategories);
 }
 
-// Función para obtener una categoría por ID
+// Función para obtener una categoría por ID 
 export function getCategoryById(id: number): Categoria | undefined {
     const categories = getCategories();
     return categories.find(c => c.id === id);
@@ -173,7 +173,7 @@ export function getNextId(): number {
     return Math.max(...categories.map(c => c.id)) + 1;
 }
 
-// Función para inicializar con datos de ejemplo (opcional)
+// Función para inicializar con datos de ejemplo 
 export function initializeCategories(): void {
     const categories = getCategories();
     

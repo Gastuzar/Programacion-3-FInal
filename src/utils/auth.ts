@@ -19,12 +19,11 @@ export function checkAuth(rolRequerido: Rol): IUser | null {
         navigate("/src/pages/client/home.html");
         return null;
     }
-
     return userData;
 
 }
 
-//
+//para la page admin
 export const verificarAdmin = (): void => {
     // Intentamos obtener el usuario validado
     const userData = checkAuth("admin");
@@ -39,7 +38,7 @@ export const verificarAdmin = (): void => {
     }
 };
 
-//Para las pages client
+//Para ocultar el panel de admin
 const mostrarPanelAdmin = (rol: string): void => {
     const adminPanelLink = document.getElementById("adminPanel");
     if (adminPanelLink) {
@@ -50,6 +49,7 @@ const mostrarPanelAdmin = (rol: string): void => {
         }
     }
 };
+//Para las pages client
 export const verificarClient = (): void => {
     const userData = checkAuth("client");
     if (!userData) return;

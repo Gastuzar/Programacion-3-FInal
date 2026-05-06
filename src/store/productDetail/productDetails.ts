@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnLogout = document.getElementById('logoutButton');
     btnLogout?.addEventListener('click', logout);
 });
-
+// Renderizar los datos
 function renderizarDatosProducto(producto: Producto, categorias: Categoria[]) {
     const nombreCat = categorias.find(c => c.id === producto.categoriaId)?.nombre || "Sin categoría";
     
